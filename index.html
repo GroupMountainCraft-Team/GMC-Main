@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMC 服务器官方主页</title>
+    <style>
+        :root {
+            --accent: #00d2ff;
+            --bg: #0f0f0f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 英雄背景区域：建议放一张你拍的 8K 生电建筑图 */
+        .hero {
+            width: 100%;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.3), var(--bg)), 
+                        url('https://your-image-link.jpg') center/cover; /* 这里替换成你的 8K 截图链接 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
+        }
+
+        .server-ip {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            font-family: monospace;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .server-ip:hover { background: var(--accent); color: #000; }
+
+        /* 入口导航区 */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin: -50px auto 40px; /* 向上偏移压在 hero 图上 */
+        }
+
+        .nav-card {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .nav-card h2 { margin: 0; font-size: 1.4rem; color: var(--accent); }
+        .nav-card p { margin: 0; color: #888; font-size: 0.9rem; }
+
+        .tag {
+            font-size: 0.7rem;
+            background: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>GROUP MOUNTAIN CRAFT</h1>
+        <p>纯净 · 技术 · 社区</p>
+        <div class="server-ip" onclick="copyIP()">IP: 91gmc.xyz (点击复制)</div>
+    </div>
+
+    <div class="nav-grid">
+        <a href="activity.html" class="nav-card">
+            <span class="tag">HOT</span>
+            <h2>周末双赛联动</h2>
+            <p>创意建筑大赛 & PVP 竞技狂欢，赢取「变身棱镜」及丰厚奖金。</p>
+            <span style="margin-top:10px; font-size:0.8rem; color:var(--accent);">立即查看详情 →</span>
+        </a>
+
+        <a href="#" class="nav-card" style="opacity: 0.6; cursor: not-allowed;">
+            <h2>服务器Wiki</h2>
+            <p>了解生电服规则、常用指令及红石工程规范。（正在建设中）</p>
+        </a>
+
+        <a href="#" class="nav-card" style="opacity: 0.6; cursor: not-allowed;">
+            <h2>皮肤站 / 地图</h2>
+            <p>访问外置皮肤站或查看实时网页版卫星地图。</p>
+        </a>
+    </div>
+
+    <footer style="margin-bottom: 40px; color: #555; font-size: 0.8rem;">
+        © 2026 GMC Server Team | Powered by GitHub Pages
+    </footer>
+
+    <script>
+        function copyIP() {
+            navigator.clipboard.writeText('91gmc.xyz');
+            alert('IP已复制到剪贴板，去启动器加入吧！');
+        }
+    </script>
+
+</body>
+</html>
