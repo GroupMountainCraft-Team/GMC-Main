@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GMC 3.21 周末活动公告</title>
     <style>
-        /* 变量定义保持一致 */
         :root { 
             --accent: #007bff; 
             --bg: #f4f7f9; 
@@ -14,6 +13,7 @@
             --sub-bg: #e9ecef;
             --border: #dee2e6;
             --sub-text: #666666;
+            --radius: 10px;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -22,176 +22,225 @@
                 --bg: #121212; 
                 --card: #1e1e1e; 
                 --text: #e0e0e0; 
-                --sub-bg: #252525;
+                --sub-bg: #2a2a2a;
                 --border: #333333;
                 --sub-text: #bbbbbb;
             }
         }
 
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.4; transition: background 0.3s, color 0.3s; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 3vh 20px; 
+            line-height: 1.4; 
+            transition: background 0.3s, color 0.3s; 
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center; 
+        }
         
-        /* PC端容器及网格布局 */
         .container { 
-            max-width: 1000px; 
+            width: 100%;
+            max-width: 1000px; /* 适当收缩最大宽度，让横向阅读更舒适 */
             margin: 0 auto; 
-            display: grid;
-            grid-template-columns: 1fr; 
-            gap: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px; 
         }
 
-        @media (min-width: 800px) {
-            .container {
-                grid-template-columns: 1.2fr 1fr;
-            }
-            .full-width { grid-column: span 2; }
-            .side-card { height: fit-content; }
-        }
-        
-        /* 动态背景窄标题栏 */
+        /* 顶部通栏 */
         .header {
             background: linear-gradient(-45deg, #3a7bd5, #00d2ff, #2575fc, #6a11cb);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
-            padding: 10px 20px; 
-            border-radius: 12px;
+            padding: 12px 20px; 
+            border-radius: var(--radius);
             text-align: center;
         }
+        .header h1 { margin: 0; font-size: 1.4rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .header h1 {
-            margin: 0;
-            font-size: 1.3rem;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        /* 卡片基础样式 */
+        .card { 
+            background: var(--card); 
+            border-radius: var(--radius); 
+            padding: 16px; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
         }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .section-title { 
+            color: var(--accent); 
+            font-size: 1.1rem; 
+            font-weight: bold; 
+            margin-bottom: 12px; 
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        
-        .card { background: var(--card); border-radius: 10px; padding: 18px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .section-title { color: var(--accent); font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
-        
-        .time-node { display: flex; align-items: center; background: var(--sub-bg); padding: 10px 14px; border-radius: 6px; margin-bottom: 8px; font-size: 0.95rem; }
-        .time-value { margin-left: 15px; font-weight: bold; color: var(--accent); }
 
-        .rule-item { border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0; font-size: 0.9rem; }
-        .topic-list { font-size: 0.85rem; color: var(--sub-text); background: var(--sub-bg); padding: 8px; border-radius: 4px; margin-top: 5px; line-height: 1.6; }
-        .mode-box { background: var(--sub-bg); padding: 12px; border-radius: 6px; margin-top: 8px; font-size: 0.85rem; }
-        
-        .prize-group { margin-bottom: 12px; padding: 8px 10px; background: var(--sub-bg); border-radius: 6px; }
-        .prize-condition { font-size: 0.85rem; font-weight: bold; color: var(--text); margin-bottom: 4px; display: block; }
-        .prize-content { font-size: 0.9rem; color: var(--sub-text); display: block; }
+        /* 第一排：时间与连接（PC端并排，移动端堆叠） */
+        .top-info-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .info-box { background: var(--sub-bg); padding: 12px; border-radius: 8px; }
+        .info-title { font-weight: bold; margin-bottom: 8px; font-size: 0.95rem; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 4px;}
+        .info-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.9rem; }
+        .info-row:last-child { margin-bottom: 0; }
+        .info-label { color: var(--sub-text); }
+        .info-val { font-weight: bold; color: var(--accent); }
+        .info-val.normal-text { color: var(--text); }
 
+        /* 建筑大赛专属网格 */
+        .building-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .rule-item { background: var(--sub-bg); border-radius: 8px; padding: 12px; border-top: 3px solid var(--accent); }
+        .rule-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px; font-size: 0.95rem; }
+        .topic-box { font-size: 0.85rem; color: var(--sub-text); background: var(--card); padding: 8px; border-radius: 4px; margin-bottom: 8px; line-height: 1.5; border: 1px solid var(--border); }
+        .score-info { font-size: 0.8rem; color: var(--accent); font-weight: bold; text-align: center; }
+
+        /* PVP与奖项并排网格 */
+        .split-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        
+        /* 奖项列表 */
+        .prize-item { display: flex; flex-direction: column; background: var(--sub-bg); padding: 10px; border-radius: 6px; margin-bottom: 8px; }
+        .prize-item:last-child { margin-bottom: 0; }
+        .prize-title { font-size: 0.9rem; font-weight: bold; margin-bottom: 4px; }
+        .prize-desc { font-size: 0.85rem; color: var(--sub-text); }
+
+        /* 高亮 */
         .highlight { color: #f39c12; font-weight: bold; }
         @media (prefers-color-scheme: dark) { .highlight { color: #ffcc00; } }
 
-        .footer { text-align: center; color: #888; font-size: 0.8rem; margin-top: 20px; }
+        /* 底部 */
+        .footer { text-align: center; color: #888; font-size: 0.85rem; margin-top: 8px; }
+
+        /* PC 端响应式调整 */
+        @media (min-width: 800px) {
+            .top-info-grid { grid-template-columns: 1fr 1fr; }
+            .building-grid { grid-template-columns: repeat(3, 1fr); }
+            .split-grid { grid-template-columns: 1fr 1fr; }
+            /* PVP 模式在 PC 端也并排一下以节省空间 */
+            .pvp-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header full-width">
+        
+        <div class="header">
             <h1>🏆 GMC 3.21 周末双赛活动 🏆</h1>
         </div>
 
-        <div class="side-card">
-            <div class="card">
-                <div class="section-title">🏗️ 创意建筑大赛详情</div>
-                <p style="font-size:0.85rem;">采用「随机抽题、限时建造、积分累计」制。</p>
-                
-                <div class="rule-item">
-                    <strong>简单难度 (5局)</strong> | 5分钟/局
-                    <div class="topic-list">题库：珍珠、戒指、钟表、音符、酒杯、蛇、剑、蛋糕、镰刀、水果、门、剪刀</div>
-                    <div style="font-size:0.8rem; color:var(--sub-text); margin-top:4px;">积分：第一名 3分、第二名 2分、第三名 1分</div>
+        <div class="top-info-grid">
+            <div class="card" style="padding: 12px;">
+                <div class="info-title">📅 活动时间表</div>
+                <div class="info-row">
+                    <span class="info-label">🏗️ 建筑大赛</span>
+                    <span class="info-val">16:00</span>
                 </div>
-
-                <div class="rule-item">
-                    <strong>普通难度 (2局)</strong> | 15分钟/局
-                    <div class="topic-list">题库：鬼魂、弓弩、相机、礼盒、棺材、樱花树、陨石、花园、猫、企鹅、电脑</div>
-                    <div style="font-size:0.8rem; color:var(--sub-text); margin-top:4px;">积分：第一名 5分、第二名 3分、第三名 2分</div>
-                </div>
-
-                <div class="rule-item">
-                    <strong>困难难度 (1局)</strong> | 40分钟/局
-                    <div class="topic-list">题库：庭院、列车、教堂、高达、小提琴、天使、空岛、乐园、玩偶、沙滩、麦田、港湾</div>
-                    <div style="font-size:0.8rem; color:var(--sub-text); margin-top:4px;">积分：第一名 8分、第二名 6分、第三名 4分</div>
+                <div class="info-row">
+                    <span class="info-label">⚔️ PVP 竞技</span>
+                    <span class="info-val">20:00</span>
                 </div>
             </div>
 
-            <div class="card" style="margin-top: 16px;">
+            <div class="card" style="padding: 12px;">
+                <div class="info-title">🔗 服务器连接指引</div>
+                <div class="info-row">
+                    <span class="info-label">📍 活动场地</span>
+                    <span class="info-val normal-text">GMC 活动服</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">💻 Java IP</span>
+                    <span class="info-val normal-text">91gmc.xyz <span style="font-size:0.8rem; font-weight:normal; color:var(--sub-text);">(大厅传送)</span></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📱 基岩版</span>
+                    <span class="info-val normal-text">IP: 91gmc.xyz ｜ 端口: 11451</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">🏗️ 创意建筑大赛详情</div>
+            <p style="font-size:0.9rem; margin:0 0 12px 0; color:var(--sub-text);">采用「随机抽题、限时建造、积分累计」制。</p>
+            
+            <div class="building-grid">
+                <div class="rule-item" style="border-top-color: #4ae73c;">
+                    <div class="rule-header"><span>简单难度 (5局)</span> <span>5分钟/局</span></div>
+                    <div class="topic-box">题库：珍珠、戒指、钟表、音符、酒杯、蛇、剑、蛋糕、镰刀、水果、门、剪刀</div>
+                    <div class="score-info">第一名 3分 | 第二名 2分 | 第三名 1分</div>
+                </div>
+
+                <div class="rule-item" style="border-top-color: #e7c23c;">
+                    <div class="rule-header"><span>普通难度 (2局)</span> <span>15分钟/局</span></div>
+                    <div class="topic-box">题库：鬼魂、弓弩、相机、礼盒、棺材、樱花树、陨石、花园、猫、企鹅、电脑</div>
+                    <div class="score-info">第一名 5分 | 第二名 3分 | 第三名 2分</div>
+                </div>
+
+                <div class="rule-item" style="border-top-color: #e74c3c;">
+                    <div class="rule-header"><span>困难难度 (1局)</span> <span>40分钟/局</span></div>
+                    <div class="topic-box">题库：庭院、列车、教堂、高达、小提琴、天使、空岛、乐园、玩偶、沙滩、麦田、港湾</div>
+                    <div class="score-info">第一名 8分 | 第二名 6分 | 第三名 4分</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-grid">
+            <div class="card">
                 <div class="section-title">⚔️ PVP 竞技狂欢详情</div>
-                <p style="font-size:0.85rem;">共 4 场竞技：3 场「大逃杀」+ 1 场「团队经典」。</p>
-                <div class="mode-box">
-                    <strong>🔥 大逃杀模式：</strong><br>
-                    探索结束后传送至决斗场决赛。支持自然回血，含专属神器及复活道具。
-                </div>
-                <div class="mode-box" style="margin-top:10px;">
-                    <strong>🛡️ 团队经典赛：</strong><br>
-                    四色对抗。需搜集装备，无法自然回血（击杀回血）。
+                <p style="font-size:0.85rem; margin:0 0 10px 0; color:var(--sub-text);">共 4 场竞技：3 场「大逃杀」+ 1 场「团队经典」。</p>
+                <div class="pvp-modes">
+                    <div style="background:var(--sub-bg); padding:10px; border-radius:6px; margin-bottom:8px;">
+                        <div style="font-weight:bold; font-size:0.9rem; margin-bottom:4px;">🔥 大逃杀模式</div>
+                        <div style="font-size:0.85rem; color:var(--sub-text);">探索结束后传送至决斗场决赛。支持自然回血，含专属神器及复活道具。</div>
+                    </div>
+                    <div style="background:var(--sub-bg); padding:10px; border-radius:6px;">
+                        <div style="font-weight:bold; font-size:0.9rem; margin-bottom:4px;">🛡️ 团队经典赛</div>
+                        <div style="font-size:0.85rem; color:var(--sub-text);">四色对抗。需搜集装备，无法自然回血（击杀回血）。</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="side-card">
             <div class="card">
-                <div class="section-title">📅 活动时间表</div>
-                <div class="time-node">
-                    <span>🏗️ 建筑大赛</span>
-                    <span class="time-value">16:00</span>
-                </div>
-                <div class="time-node">
-                    <span>⚔️ PVP 竞技</span>
-                    <span class="time-value">20:00</span>
-                </div>
-                <p style="font-size:0.85rem; margin:12px 0 0; line-height: 1.8;">
-                    📍 <strong>活动场地：</strong>GMC 活动服<br>
-                    🖥️ <strong>Java IP：</strong>91gmc.xyz (大厅传送)<br>
-                    📱 <strong>基岩端口：</strong>11451
-                </p>
-            </div>
-
-            <div class="card" style="margin-top: 16px;">
                 <div class="section-title">🎁 赛事奖项总览</div>
-                
-                <div class="prize-group">
-                    <span class="prize-condition">🏆 建筑大师 — 总分前三</span>
-                    <span class="prize-content">奖励：稀有道具「<span class="highlight">变身棱镜</span>」</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div class="prize-item">
+                        <span class="prize-title">🏆 建筑大师</span>
+                        <span class="prize-desc">奖励稀有道具「<span class="highlight">变身棱镜</span>」</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-title">🎖️ 建筑参与奖</span>
+                        <span class="prize-desc">完整参与奖励 200 金币</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-title">⚔️ PVP 战神</span>
+                        <span class="prize-desc">限定称号 + 附魔书(<span class="highlight">自选</span>)</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-title">🛡️ PVP 王牌队</span>
+                        <span class="prize-desc">限定称号 + 资金 200/人</span>
+                    </div>
                 </div>
-
-                <div class="prize-group">
-                    <span class="prize-condition">🎖️ 建筑参与奖 — 完整参与</span>
-                    <span class="prize-content">奖励：200 金币</span>
-                </div>
-
-                <div class="prize-group">
-                    <span class="prize-condition">⚔️ PVP 战神 — 大逃杀单场胜者</span>
-                    <span class="prize-content">奖励：限定称号 + 附魔书（<span class="highlight">自选</span>）</span>
-                </div>
-
-                <div class="prize-group" style="margin-bottom: 0;">
-                    <span class="prize-condition">🛡️ PVP 王牌队 — 团队赛胜方</span>
-                    <span class="prize-content">奖励：限定称号 + 公会资金 200 / 人</span>
-                </div>
-            </div>
-
-            <div class="card" style="margin-top: 16px;">
-                <div class="section-title">⚠️ 注意事项</div>
-                <ul style="margin:0; padding-left:15px; font-size:0.85rem; color:var(--sub-text);">
-                    <li style="margin-bottom:8px;">🛡️ <strong>开局保护：</strong>每局开局均设有短暂无敌时间，请合理规划。</li>
-                    <li style="margin-bottom:8px;">⏱️ <strong>时间管理：</strong>赛事设有实时倒计时，请密切关注屏幕上方。</li>
-                    <li style="margin-bottom:8px;">📢 <strong>规则执行：</strong>现场细节规则以管理员（OP）实时说明为准。</li>
-                    <li style="margin-bottom:8px;">⚖️ <strong>公平竞争：</strong>严禁使用第三方插件，违者取消参赛资格。</li>
-                    <li style="color:var(--accent);">⚠️ <strong>备注说明：</strong>奖品发放以管理员确认为准；违规将取消所有奖励。</li>
-                </ul>
             </div>
         </div>
 
-        <div class="footer full-width">
+        <div class="card">
+            <div class="section-title">⚠️ 注意事项</div>
+            <ul style="margin:0; padding-left:20px; font-size:0.9rem; color:var(--text); line-height: 1.6;">
+                <li><strong>开局保护：</strong>每局开局均设有短暂无敌时间，请合理规划。</li>
+                <li><strong>时间管理：</strong>赛事设有实时倒计时，请密切关注屏幕上方。</li>
+                <li><strong>规则执行：</strong>现场细节规则以管理员（OP）实时说明为准。</li>
+                <li><strong>公平竞争：</strong>严禁使用第三方插件，违者取消参赛资格。</li>
+                <li style="color:var(--accent);"><strong>备注说明：</strong>奖品发放以管理员确认为准；违规将取消所有奖励。</li>
+            </ul>
+        </div>
+
+        <div class="footer">
             🎊 预祝各位玩家展现才华，满载而归！<br>
             <strong>GMC 服务器管理组 | 2026-03-21</strong>
         </div>
+
     </div>
 </body>
 </html>
