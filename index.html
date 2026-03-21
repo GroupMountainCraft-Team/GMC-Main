@@ -96,6 +96,30 @@
             border-radius: 4px;
             width: fit-content;
         }
+        /* toast 提示样式 */
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%) translateY(16px);
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            font-size: 0.95rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 240ms ease, opacity 240ms ease;
+            z-index: 9999;
+            max-width: calc(100% - 40px);
+            text-align: center;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body>
@@ -129,10 +153,31 @@
         © 2026 GMC Server Team | Powered by GitHub Pages
     </footer>
 
+    <!-- 页面内 toast 元素 -->
+    <div id="toast" class="toast" aria-live="polite" role="status" hidden></div>
+
     <script>
+        function showToast(message, duration = 3000) {
+            const t = document.getElementById('toast');
+            if (!t) return;
+            t.hidden = false;
+            t.textContent = message;
+            t.classList.add('show');
+            if (window._toastTimer) clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                t.classList.remove('show');
+                // 保持 hidden 一会儿以避免无障碍重复读取
+                setTimeout(() => t.hidden = true, 250);
+            }, duration);
+        }
+
         function copyIP() {
-            navigator.clipboard.writeText('91gmc.xyz');
-            alert('IP已复制到剪贴板，去启动器加入吧！');
+            navigator.clipboard.writeText('91gmc.xyz').then(() => {
+                showToast('IP 已复制到剪贴板，去启动器加入吧！');
+            }).catch(() => {
+                // 回退提示（某些浏览器在不安全上下文中会失败）
+                showToast('复制失败，请手动复制：91gmc.xyz');
+            });
         }
     </script>
 
