@@ -23,18 +23,45 @@
             min-height: 100vh;
         }
 
-        /* 英雄背景区域：建议放一张你拍的 8K 生电建筑图 */
+        /* 英雄背景区域：使用伪元素承载图片并支持可调模糊 */
         .hero {
             width: 100%;
             height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.3), var(--bg)), 
-                        url('./assets/bg.jpg') center/cover; /* 这里替换成你的 8K 截图链接 */
+            position: relative;
+            overflow: hidden;
+            background: transparent; /* 让伪元素背景可见 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
+
+        /* 背景图片层：用于模糊并可缩放以避免边缘残影 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('./assets/bg.jpg'); /* 可替换为你的图片路径 */
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px); /* 调节这里的数值来改变模糊强度（px） */
+            transform: scale(1.06);
+            z-index: 0; /* 背景图置于最底层 */
+            will-change: filter, transform;
+        }
+
+        /* 叠加半透明渐变，保证文字可读 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0,0,0,0.35), var(--bg));
+            z-index: 1; /* 叠加渐变层，位于背景之上 */
+        }
+
+        /* 让 hero 内部文本位于上层 */
+        .hero > * { position: relative; z-index: 3; }
 
         .hero h1 {
             font-size: 3rem;
@@ -65,6 +92,8 @@
             width: 90%;
             max-width: 1000px;
             margin: -50px auto 40px; /* 向上偏移压在 hero 图上 */
+            position: relative;
+            z-index: 2; /* 确保卡片位于 hero 背景之上，同时低于 hero 文本 */
         }
 
         .nav-card {
@@ -126,7 +155,7 @@
 
     <div class="hero">
         <h1>GROUP MOUNTAIN CRAFT</h1>
-        <p>纯净 · 技术 · 社区</p>
+        <p>生电 · 养老 · 建筑</p>
         <div class="server-ip" onclick="copyIP()">IP: 91gmc.xyz (点击复制)</div>
     </div>
 
