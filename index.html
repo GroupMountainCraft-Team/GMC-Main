@@ -1,214 +1,71 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GMC 服务器官方主页</title>
-    <style>
-        :root {
-            --accent: #00d2ff;
-            --bg: #0f0f0f;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text: #e0e0e0;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* 英雄背景区域：使用伪元素承载图片并支持可调模糊 */
-        .hero {
-            width: 100%;
-            height: 60vh;
-            position: relative;
-            overflow: hidden;
-            background: transparent; /* 让伪元素背景可见 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        /* 背景图片层：用于模糊并可缩放以避免边缘残影 */
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('./assets/bg.jpg'); /* 可替换为你的图片路径 */
-            background-size: cover;
-            background-position: center;
-            filter: blur(8px); /* 调节这里的数值来改变模糊强度（px） */
-            transform: scale(1.06);
-            z-index: 0; /* 背景图置于最底层 */
-            will-change: filter, transform;
-        }
-
-        /* 叠加半透明渐变，保证文字可读 */
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(rgba(0,0,0,0.35), var(--bg));
-            z-index: 1; /* 叠加渐变层，位于背景之上 */
-        }
-
-        /* 让 hero 内部文本位于上层 */
-        .hero > * { position: relative; z-index: 3; }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-            background: linear-gradient(to right, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 4px;
-        }
-
-        .server-ip {
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            font-family: monospace;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .server-ip:hover { background: var(--accent); color: #000; }
-
-        /* 入口导航区 */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            width: 90%;
-            max-width: 1000px;
-            margin: -50px auto 40px; /* 向上偏移压在 hero 图上 */
-            position: relative;
-            z-index: 2; /* 确保卡片位于 hero 背景之上，同时低于 hero 文本 */
-        }
-
-        .nav-card {
-            background: #1e1e1e;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s, border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .nav-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .nav-card h2 { margin: 0; font-size: 1.4rem; color: var(--accent); }
-        .nav-card p { margin: 0; color: #888; font-size: 0.9rem; }
-
-        .tag {
-            font-size: 0.7rem;
-            background: #e74c3c;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            width: fit-content;
-        }
-        /* toast 提示样式 */
-        .toast {
-            position: fixed;
-            left: 50%;
-            bottom: 28px;
-            transform: translateX(-50%) translateY(16px);
-            background: rgba(0,0,0,0.75);
-            color: #fff;
-            padding: 12px 18px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            font-size: 0.95rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: transform 240ms ease, opacity 240ms ease;
-            z-index: 9999;
-            max-width: calc(100% - 40px);
-            text-align: center;
-        }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-            pointer-events: auto;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GMC 服务器主页</title>
+  <link rel="stylesheet" href="./assets/site.css" />
 </head>
 <body>
+  <div class="orb-layer" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
 
-    <div class="hero">
-        <h1>GROUP MOUNTAIN CRAFT</h1>
-        <p>生电 · 养老 · 建筑</p>
-        <div class="server-ip" onclick="copyIP()">IP: 91gmc.xyz (点击复制)</div>
-    </div>
+  <div class="site-shell">
+    <nav class="top-nav">
+      <a class="brand" href="index.html">GMC SERVER</a>
+      <div class="nav-links">
+        <a class="active" href="index.html">首页</a>
+        <a href="wiki.html">Wiki</a>
+        <a href="rules.html">管理规定</a>
+        <a href="actives.html">活动公告</a>
+      </div>
+    </nav>
 
-    <div class="nav-grid">
-        <a href="actives.html" class="nav-card">
-            <span class="tag">HOT</span>
-            <h2>周末双赛联动</h2>
-            <p>创意建筑大赛 & PVP 竞技狂欢，赢取「变身棱镜」及丰厚奖金。</p>
-            <span style="margin-top:10px; font-size:0.8rem; color:var(--accent);">立即查看详情 →</span>
-        </a>
+    <header class="hero-panel reveal">
+      <div class="hero-kicker">Group Mountain Craft</div>
+      <h1 class="hero-title">生电 · 养老 · 建筑<br />一个长期稳定的多玩法社区服</h1>
+      <p class="hero-desc">
+        这里有完整的服务器 Wiki、管理条例和活动公告。你可以快速找到规则边界、指令系统和每周活动安排，直接开玩，不踩坑。
+      </p>
+      <div class="btn-row">
+        <button class="btn btn-primary mono" onclick="copyIP()">IP: 91gmc.xyz（点击复制）</button>
+      </div>
+    </header>
 
-        <a href="#" class="nav-card" style="opacity: 0.6; cursor: not-allowed;">
-            <h2>服务器Wiki</h2>
-            <p>了解生电服规则、常用指令及红石工程规范。（正在建设中）</p>
-        </a>
+    <section class="grid">
+      <a class="card hot-card reveal" href="actives.html">
+        <span class="chip hot-chip">重点活动</span>
+        <h3>活动公告中心</h3>
+        <p>周末双赛联动：奖励、赛制、报名时间一页看全，避免错过报名时段。</p>
+      </a>
 
-        <a href="#" class="nav-card" style="opacity: 0.6; cursor: not-allowed;">
-            <h2>皮肤站 / 地图</h2>
-            <p>访问外置皮肤站或查看实时网页版卫星地图。</p>
-        </a>
-    </div>
+      <a class="card reveal" href="wiki.html">
+        <span class="chip">必读</span>
+        <h3>服务器 Wiki</h3>
+        <p>经济、领地、杂项指令、符文之地机制与新增附魔入口。</p>
+      </a>
 
-    <footer style="margin-bottom: 40px; color: #555; font-size: 0.8rem;">
-        © 2026 GMC Server Team | Powered by GitHub Pages
-    </footer>
+      <a class="card reveal" href="rules.html">
+        <span class="chip">管理条例</span>
+        <h3>服务器管理规定</h3>
+        <p>总章、违规分级、公会与假人规则、管理员职责等完整条例。</p>
+      </a>
+    </section>
 
-    <!-- 页面内 toast 元素 -->
-    <div id="toast" class="toast" aria-live="polite" role="status" hidden></div>
+    <p class="footer">© 2026 GMC Server Team</p>
+  </div>
 
-    <script>
-        function showToast(message, duration = 3000) {
-            const t = document.getElementById('toast');
-            if (!t) return;
-            t.hidden = false;
-            t.textContent = message;
-            t.classList.add('show');
-            if (window._toastTimer) clearTimeout(window._toastTimer);
-            window._toastTimer = setTimeout(() => {
-                t.classList.remove('show');
-                // 保持 hidden 一会儿以避免无障碍重复读取
-                setTimeout(() => t.hidden = true, 250);
-            }, duration);
-        }
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
-        function copyIP() {
-            navigator.clipboard.writeText('91gmc.xyz').then(() => {
-                showToast('IP 已复制到剪贴板，去启动器加入吧！');
-            }).catch(() => {
-                // 回退提示（某些浏览器在不安全上下文中会失败）
-                showToast('复制失败，请手动复制：91gmc.xyz');
-            });
-        }
-    </script>
+  <script src="./assets/site.js"></script>
+  <script>
+    function copyIP() {
+      window.gmcUi.copyText('91gmc.xyz', '服务器 IP 已复制');
+    }
 
+  </script>
 </body>
 </html>
