@@ -55,19 +55,43 @@
     node.style.setProperty('--reveal-delay', `${Math.min(index * 55, 360)}ms`);
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
+  let observer = null;
 
-  revealNodes.forEach((el) => observer.observe(el));
+  function revealVisibleNodes(forceAll = false) {
+    revealNodes.forEach((node) => {
+      if (node.classList.contains('in-view')) return;
+      const rect = node.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight * 1.08 && rect.bottom > -80;
+      if (forceAll || isVisible) {
+        node.classList.add('in-view');
+        if (observer) observer.unobserve(node);
+      }
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            if (observer) observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealNodes.forEach((el) => observer.observe(el));
+    requestAnimationFrame(() => revealVisibleNodes());
+    window.addEventListener('load', () => revealVisibleNodes());
+    setTimeout(() => revealVisibleNodes(), 380);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => revealVisibleNodes(), 120);
+    });
+  } else {
+    revealVisibleNodes(true);
+  }
 
   const mobileToc = document.getElementById('mobile-toc');
 
