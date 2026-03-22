@@ -8,9 +8,10 @@
   <style>
     .event-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 10px;
+      align-items: start;
     }
 
     .event-pill {
@@ -18,15 +19,65 @@
       border-radius: 10px;
       padding: 10px 12px;
       background: rgba(9, 33, 39, 0.8);
+      min-width: 0;
     }
 
     .event-pill h4 {
       margin: 0 0 6px;
     }
 
+    .event-pill p {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+
+    .event-pill.full-row {
+      grid-column: 1 / -1;
+    }
+
     @media (max-width: 900px) {
       .event-grid {
         grid-template-columns: 1fr;
+      }
+
+      .event-pill.full-row {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main.content {
+        padding: 14px;
+      }
+
+      .section-card {
+        padding: 12px;
+      }
+
+      .section-card h2 {
+        font-size: 1.2rem;
+        margin: 0 0 10px;
+      }
+
+      .event-pill {
+        padding: 10px;
+      }
+
+      .event-pill h4 {
+        font-size: 1.05rem;
+      }
+
+      .event-pill p,
+      .event-pill div,
+      .section-card li {
+        font-size: 0.97rem;
+        line-height: 1.65;
+      }
+
+      .section-card ul,
+      .section-card ol {
+        margin: 10px 0;
+        padding-left: 18px;
       }
     }
   </style>
@@ -92,7 +143,7 @@
             <p>题库：鬼魂、弓弩、相机、礼盒、棺材、樱花树、陨石、花园、猫、企鹅、电脑</p>
             <div>积分：第一名 5 分，第二名 3 分，第三名 2 分</div>
           </div>
-          <div class="event-pill" style="grid-column: span 2;">
+          <div class="event-pill full-row">
             <h4>困难难度（1 局）</h4>
             <div>40 分钟 / 局</div>
             <p>题库：庭院、列车、教堂、高达、小提琴、天使、空岛、乐园、玩偶、沙滩、麦田、港湾</p>
