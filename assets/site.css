@@ -30,6 +30,7 @@
 	--cmd-bg: rgba(7, 28, 34, 0.92);
 	--cmd-line: rgba(134, 219, 201, 0.22);
 	--cmd-line-hover: rgba(130, 244, 215, 0.65);
+	--cmd-left-text: #8deed3;
 	--stat-bg: rgba(6, 27, 34, 0.84);
 	--stat-line: rgba(126, 223, 203, 0.28);
 	--stat-strong: #b6f6e4;
@@ -82,9 +83,9 @@
 		--text-dim: #476e72;
 		--shadow-strong: rgba(31, 78, 87, 0.18);
 		--shadow-soft: rgba(31, 78, 87, 0.14);
-		--toc-active-bg: rgba(30, 164, 137, 0.12);
-		--toc-active-text: #15574f;
-		--toc-active-border: #2ea393;
+		--toc-active-bg: rgba(30, 164, 137, 0.18);
+		--toc-active-text: #0f4f49;
+		--toc-active-border: #1f8f83;
 		--mobile-toc-bg: rgba(250, 254, 255, 0.96);
 		--mobile-toc-hover-bg: rgba(30, 164, 137, 0.12);
 		--mobile-toc-summary-text: #1b5f58;
@@ -94,6 +95,7 @@
 		--cmd-bg: rgba(255, 255, 255, 0.96);
 		--cmd-line: rgba(72, 138, 135, 0.24);
 		--cmd-line-hover: rgba(30, 164, 137, 0.5);
+		--cmd-left-text: #1b6d65;
 		--stat-bg: rgba(255, 255, 255, 0.95);
 		--stat-line: rgba(70, 134, 130, 0.22);
 		--stat-strong: #1a6f67;
@@ -634,7 +636,7 @@ body {
 }
 
 .cmd-item .left {
-	color: #8deed3;
+	color: var(--cmd-left-text);
 	font-family: 'JetBrains Mono', monospace;
 	font-size: 0.91rem;
 }
