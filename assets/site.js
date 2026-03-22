@@ -2,6 +2,12 @@
   const toastEl = document.getElementById('toast');
   const topNav = document.querySelector('.top-nav');
 
+  function syncNavMetrics() {
+    if (!topNav) return;
+    const navHeight = Math.ceil(topNav.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--nav-height', `${navHeight}px`);
+  }
+
   function showToast(message, duration = 2200) {
     if (!toastEl) return;
     toastEl.hidden = false;
@@ -64,6 +70,9 @@
   revealNodes.forEach((el) => observer.observe(el));
 
   const mobileToc = document.getElementById('mobile-toc');
+
+  syncNavMetrics();
+  window.addEventListener('resize', syncNavMetrics);
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {

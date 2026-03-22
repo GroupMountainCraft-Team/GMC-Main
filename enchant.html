@@ -16,8 +16,8 @@
     .toolbar input {
       flex: 1;
       min-width: 220px;
-      border: 1px solid rgba(130, 198, 186, 0.35);
-      background: rgba(7, 28, 34, 0.92);
+      border: 1px solid var(--table-input-line);
+      background: var(--table-input-bg);
       color: var(--text);
       border-radius: 10px;
       padding: 10px 12px;
@@ -26,9 +26,9 @@
 
     .table-wrap {
       overflow: auto;
-      border: 1px solid rgba(130, 198, 186, 0.35);
+      border: 1px solid var(--table-wrap-line);
       border-radius: 12px;
-      background: rgba(7, 28, 34, 0.82);
+      background: var(--table-wrap-bg);
       margin-top: 10px;
       position: relative;
     }
@@ -44,7 +44,7 @@
 
     th,
     td {
-      border-bottom: 1px solid rgba(130, 198, 186, 0.2);
+      border-bottom: 1px solid var(--table-cell-line);
       padding: 10px 10px;
       text-align: left;
       vertical-align: top;
@@ -55,8 +55,8 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background: rgba(9, 37, 46, 0.98);
-      color: #b9f3e3;
+      background: var(--table-head-bg);
+      color: var(--table-head-text);
       font-weight: 700;
       white-space: nowrap;
     }
@@ -125,23 +125,23 @@
       position: sticky;
       left: 0;
       z-index: 2;
-      background: rgba(7, 28, 34, 0.98);
+      background: var(--table-sticky-bg);
     }
 
     td:nth-child(2) {
       position: sticky;
       left: var(--col-1);
       z-index: 1;
-      background: rgba(7, 28, 34, 0.98);
+      background: var(--table-sticky-bg);
     }
 
     tbody tr:hover {
-      background: rgba(84, 219, 184, 0.08);
+      background: var(--table-row-hover);
     }
 
     tbody tr:hover td:nth-child(1),
     tbody tr:hover td:nth-child(2) {
-      background: rgba(15, 56, 68, 0.96);
+      background: var(--table-sticky-hover);
     }
 
     .muted {
