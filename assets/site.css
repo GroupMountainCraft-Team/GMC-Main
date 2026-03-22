@@ -19,8 +19,11 @@
 	--warn: #f04f5f;
 	--gold: #f6b93c;
 	--toc-active-bg: rgba(100, 242, 205, 0.08);
+	--toc-active-text: #d7fff4;
+	--toc-active-border: #72f2ce;
 	--mobile-toc-bg: rgba(10, 28, 34, 0.9);
 	--mobile-toc-hover-bg: rgba(100, 242, 205, 0.1);
+	--mobile-toc-summary-text: #c5f6ea;
 	--section-bg: rgba(9, 33, 39, 0.8);
 	--section-line: rgba(137, 221, 203, 0.2);
 	--section-line-hover: rgba(137, 221, 203, 0.38);
@@ -80,8 +83,11 @@
 		--shadow-strong: rgba(31, 78, 87, 0.18);
 		--shadow-soft: rgba(31, 78, 87, 0.14);
 		--toc-active-bg: rgba(30, 164, 137, 0.12);
+		--toc-active-text: #15574f;
+		--toc-active-border: #2ea393;
 		--mobile-toc-bg: rgba(250, 254, 255, 0.96);
 		--mobile-toc-hover-bg: rgba(30, 164, 137, 0.12);
+		--mobile-toc-summary-text: #1b5f58;
 		--section-bg: rgba(255, 255, 255, 0.86);
 		--section-line: rgba(72, 138, 135, 0.2);
 		--section-line-hover: rgba(50, 130, 124, 0.36);
@@ -513,8 +519,8 @@ body {
 
 .toc a.active,
 .mobile-toc-links a.active {
-	color: #d7fff4;
-	border-left-color: #72f2ce;
+	color: var(--toc-active-text);
+	border-left-color: var(--toc-active-border);
 	background: var(--toc-active-bg);
 	border-radius: 6px;
 }
@@ -533,7 +539,7 @@ body {
 	list-style: none;
 	cursor: pointer;
 	font-weight: 700;
-	color: #c5f6ea;
+	color: var(--mobile-toc-summary-text);
 	user-select: none;
 }
 
