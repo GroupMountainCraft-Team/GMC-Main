@@ -9,15 +9,46 @@
     .event-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 10px;
+      gap: 14px;
+      margin-top: 12px;
       align-items: start;
+    }
+
+    .activity-main {
+      display: grid;
+      gap: 14px;
+    }
+
+    .activity-main h1 {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .activity-main .gold-box {
+      margin: 0;
+    }
+
+    .activity-main .section-card {
+      margin: 0;
+      padding: 16px 18px;
+    }
+
+    .activity-main .section-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .activity-main .section-card p,
+    .activity-main .section-card li,
+    .activity-main .section-card div {
+      line-height: 1.72;
     }
 
     .event-pill {
       border: 1px solid var(--section-line);
       border-radius: 10px;
-      padding: 10px 12px;
+      padding: 12px 14px;
       background: var(--surface-strong);
       color: var(--text);
       min-width: 0;
@@ -55,8 +86,35 @@
       letter-spacing: 0.04em;
     }
 
+    .reward-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .reward-card {
+      border: 1px solid var(--section-line);
+      border-radius: 12px;
+      background: var(--surface-strong);
+      padding: 12px 14px;
+    }
+
+    .reward-card h3,
+    .reward-card h4 {
+      margin: 0 0 8px;
+    }
+
+    .reward-card p {
+      margin: 8px 0;
+    }
+
     @media (max-width: 900px) {
       .event-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reward-grid {
         grid-template-columns: 1fr;
       }
 
@@ -70,6 +128,10 @@
         padding: 14px;
       }
 
+      .activity-main {
+        gap: 12px;
+      }
+
       .section-card {
         padding: 12px;
       }
@@ -80,6 +142,10 @@
       }
 
       .event-pill {
+        padding: 10px;
+      }
+
+      .reward-card {
         padding: 10px;
       }
 
@@ -120,7 +186,7 @@
       </div>
     </nav>
 
-    <main class="content panel reveal" style="margin-top: 18px;">
+    <main class="content panel reveal activity-main" style="margin-top: 18px;">
       <h1>GMC 3.28 周末双赛活动</h1>
       <div class="gold-box">活动组合：创意建筑大赛 + PVP 竞技狂欢</div>
 
@@ -190,39 +256,42 @@
 
       <section class="section-card">
         <h2>赛事奖项</h2>
-        <h3>大逃杀第一名奖励获得者</h3>
-        <p>+300金币 +13金苹果 +3附魔金苹果</p>
-        <h3>第二名奖励</h3>
-        <p>+200金币 +10金苹果 +2附魔金苹果</p>
-        <h3>第三名奖励</h3>
-        <p>+100金币 +7金苹果 +1附魔金苹果</p>
-        <p>+自选附魔书 +限时称号（七天）
-          <span class="colored-title">
-            <span style="color:#780000;">裁</span><span style="color:#c81428;">决</span><span style="color:#ff3214;">者</span>
-          </span>
-        </p>
-
-        <h3>团队PVP胜利小队</h3>
-        <p>+公会资金200/人 +150金币/人 +限时称号（七天）
-          <span class="colored-title">
-            <span style="color:#b48200;">绝</span><span style="color:#e6b700;">境</span><span style="color:#ffde21;">登</span><span style="color:#fff564;">顶</span>
-          </span>
-        </p>
-
-        <h3>在线30分钟奖励</h3>
-        <p>+200金币 +24钻石 +1下界合金 +5金苹果</p>
-
-        <h3>建筑战争</h3>
-        <h4>第一名额外奖励</h4>
-        <p>+300金币 +13金苹果 +3附魔金苹果</p>
-        <h4>第二名奖励</h4>
-        <p>+200金币 +10金苹果 +2附魔金苹果</p>
-        <h4>第三名奖励</h4>
-        <p>+100金币 +7金苹果 +1附魔金苹果</p>
-        <p>+稀有道具「变身棱镜」 +特殊称号</p>
-
-        <h3>在线30分钟奖励</h3>
-        <p>+200金币 +24钻石 +1下界合金 +5金苹果</p>
+        <div class="reward-grid">
+          <div class="reward-card">
+            <h3>PVP 奖励</h3>
+            <h4>大逃杀第一名奖励获得者</h4>
+            <p>+300金币 +13金苹果 +3附魔金苹果</p>
+            <h4>第二名奖励</h4>
+            <p>+200金币 +10金苹果 +2附魔金苹果</p>
+            <h4>第三名奖励</h4>
+            <p>+100金币 +7金苹果 +1附魔金苹果</p>
+            <p>+自选附魔书 +限时称号（七天）
+              <span class="colored-title">
+                <span style="color:#780000;">裁</span><span style="color:#c81428;">决</span><span style="color:#ff3214;">者</span>
+              </span>
+            </p>
+            <h4>团队PVP胜利小队</h4>
+            <p>+公会资金200/人 +150金币/人 +限时称号（七天）
+              <span class="colored-title">
+                <span style="color:#b48200;">绝</span><span style="color:#e6b700;">境</span><span style="color:#ffde21;">登</span><span style="color:#fff564;">顶</span>
+              </span>
+            </p>
+            <h4>在线30分钟奖励</h4>
+            <p>+200金币 +24钻石 +1下界合金 +5金苹果</p>
+          </div>
+          <div class="reward-card">
+            <h3>建筑战争奖励</h3>
+            <h4>第一名额外奖励</h4>
+            <p>+300金币 +13金苹果 +3附魔金苹果</p>
+            <h4>第二名奖励</h4>
+            <p>+200金币 +10金苹果 +2附魔金苹果</p>
+            <h4>第三名奖励</h4>
+            <p>+100金币 +7金苹果 +1附魔金苹果</p>
+            <p>+稀有道具「变身棱镜」 +特殊称号</p>
+            <h4>在线30分钟奖励</h4>
+            <p>+200金币 +24钻石 +1下界合金 +5金苹果</p>
+          </div>
+        </div>
       </section>
 
       <section class="section-card">
