@@ -50,6 +50,59 @@
     copyText,
   };
 
+  function renderColorCodeText(raw) {
+    if (!raw) return document.createTextNode('');
+    const fragment = document.createDocumentFragment();
+    const token = /&#([0-9a-fA-F]{6})/g;
+    let currentColor = null;
+    let lastIndex = 0;
+    let match = null;
+
+    while ((match = token.exec(raw)) !== null) {
+      const tokenStart = match.index;
+      const tokenEnd = tokenStart + match[0].length;
+
+      if (tokenStart > lastIndex) {
+        const segment = raw.slice(lastIndex, tokenStart);
+        if (currentColor) {
+          const span = document.createElement('span');
+          span.style.color = currentColor;
+          span.textContent = segment;
+          fragment.appendChild(span);
+        } else {
+          fragment.appendChild(document.createTextNode(segment));
+        }
+      }
+
+      currentColor = `#${match[1]}`;
+      lastIndex = tokenEnd;
+    }
+
+    if (lastIndex < raw.length) {
+      const tail = raw.slice(lastIndex);
+      if (currentColor) {
+        const span = document.createElement('span');
+        span.style.color = currentColor;
+        span.textContent = tail;
+        fragment.appendChild(span);
+      } else {
+        fragment.appendChild(document.createTextNode(tail));
+      }
+    }
+
+    return fragment;
+  }
+
+  function applyColorCodes() {
+    document.querySelectorAll('[data-color-codes]').forEach((el) => {
+      const raw = el.getAttribute('data-color-codes') || '';
+      el.textContent = '';
+      el.appendChild(renderColorCodeText(raw));
+    });
+  }
+
+  applyColorCodes();
+
   const revealNodes = document.querySelectorAll('.reveal');
   revealNodes.forEach((node, index) => {
     node.style.setProperty('--reveal-delay', `${Math.min(index * 55, 360)}ms`);
