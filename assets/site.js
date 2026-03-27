@@ -50,59 +50,6 @@
     copyText,
   };
 
-  function renderColorCodeText(raw) {
-    if (!raw) return document.createTextNode('');
-    const fragment = document.createDocumentFragment();
-    const token = /&#([0-9a-fA-F]{6})/g;
-    let currentColor = null;
-    let lastIndex = 0;
-    let match = null;
-
-    while ((match = token.exec(raw)) !== null) {
-      const tokenStart = match.index;
-      const tokenEnd = tokenStart + match[0].length;
-
-      if (tokenStart > lastIndex) {
-        const segment = raw.slice(lastIndex, tokenStart);
-        if (currentColor) {
-          const span = document.createElement('span');
-          span.style.color = currentColor;
-          span.textContent = segment;
-          fragment.appendChild(span);
-        } else {
-          fragment.appendChild(document.createTextNode(segment));
-        }
-      }
-
-      currentColor = `#${match[1]}`;
-      lastIndex = tokenEnd;
-    }
-
-    if (lastIndex < raw.length) {
-      const tail = raw.slice(lastIndex);
-      if (currentColor) {
-        const span = document.createElement('span');
-        span.style.color = currentColor;
-        span.textContent = tail;
-        fragment.appendChild(span);
-      } else {
-        fragment.appendChild(document.createTextNode(tail));
-      }
-    }
-
-    return fragment;
-  }
-
-  function applyColorCodes() {
-    document.querySelectorAll('[data-color-codes]').forEach((el) => {
-      const raw = el.getAttribute('data-color-codes') || '';
-      el.textContent = '';
-      el.appendChild(renderColorCodeText(raw));
-    });
-  }
-
-  applyColorCodes();
-
   const revealNodes = document.querySelectorAll('.reveal');
   revealNodes.forEach((node, index) => {
     node.style.setProperty('--reveal-delay', `${Math.min(index * 55, 360)}ms`);
@@ -229,4 +176,57 @@
 
   window.addEventListener('scroll', handleScrollState, { passive: true });
   handleScrollState();
+
+  function warmupNavigationPrefetch() {
+    const seen = new Set();
+    const links = Array.from(document.querySelectorAll('a[href]')).filter((link) => {
+      const href = link.getAttribute('href') || '';
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+      try {
+        const url = new URL(href, location.href);
+        return url.origin === location.origin;
+      } catch (_) {
+        return false;
+      }
+    });
+
+    const prefetchUrl = (url) => {
+      if (seen.has(url)) return;
+      seen.add(url);
+      const hint = document.createElement('link');
+      hint.rel = 'prefetch';
+      hint.href = url;
+      hint.as = 'document';
+      document.head.appendChild(hint);
+    };
+
+    links.forEach((link) => {
+      const url = new URL(link.href, location.href).href;
+      const trigger = () => prefetchUrl(url);
+      link.addEventListener('pointerenter', trigger, { once: true, passive: true });
+      link.addEventListener('touchstart', trigger, { once: true, passive: true });
+      link.addEventListener('focus', trigger, { once: true, passive: true });
+    });
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        links.slice(0, 3).forEach((link) => prefetchUrl(new URL(link.href, location.href).href));
+      });
+    }
+  }
+
+  function registerSiteWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    const isHttp = location.protocol === 'http:' || location.protocol === 'https:';
+    if (!isHttp) return;
+
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {
+        // Keep silent: page should work even if service worker registration fails.
+      });
+    });
+  }
+
+  warmupNavigationPrefetch();
+  registerSiteWorker();
 })();
