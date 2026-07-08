@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GMC 四服 Wiki</title>
   <meta name="description" content="GMC 四服玩家 Wiki，整理入服绑定、经济市场、领地、杂项命令、符文之地机制与新增附魔入口。" />
-  <meta name="theme-color" content="#0b151a" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#edf5f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#101612" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f5f7f2" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="./assets/icon.jpg" type="image/jpeg" />
   <link rel="apple-touch-icon" href="./assets/icon.jpg" />
   <link rel="stylesheet" href="./assets/site.css" />
 </head>
 <body>
-  <div class="orb-layer" aria-hidden="true">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
-  </div>
-
   <div class="site-shell">
     <nav class="top-nav" aria-label="主导航">
       <a class="brand" href="index.html">GMC SERVER</a>
@@ -67,11 +61,11 @@
 
         <section id="server-info" class="section-card">
           <h2>服务器概览</h2>
-          <div class="cmd-item" onclick="window.open('https://space.bilibili.com/354238372', '_blank', 'noopener')">
+          <div class="cmd-item" data-href="https://space.bilibili.com/354238372" data-external="true">
             <span class="left">官方 Bilibili 入口</span>
             <span class="right">点击前往主页</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('966486718')">
+          <div class="cmd-item" data-copy="966486718">
             <span class="left">服务器审核群：966486718</span>
             <span class="right">点击复制群号</span>
           </div>
@@ -135,23 +129,23 @@
 
         <section id="economy" class="section-card">
           <h2>一、经济与市场</h2>
-          <div class="cmd-item" onclick="copyCmd('/bal')">
+          <div class="cmd-item" data-copy="/bal">
             <span class="left">/bal</span>
             <span class="right">查看当前拥有金币数</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/pay <玩家名> <金额>')">
+          <div class="cmd-item" data-copy="/pay &lt;玩家名&gt; &lt;金额&gt;">
             <span class="left">/pay &lt;玩家名&gt; &lt;金额&gt;</span>
             <span class="right">给玩家转账</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/market')">
+          <div class="cmd-item" data-copy="/market">
             <span class="left">/market</span>
             <span class="right">打开玩家市场</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/manuela <数量> <单价>')">
+          <div class="cmd-item" data-copy="/manuela &lt;数量&gt; &lt;单价&gt;">
             <span class="left">/manuela &lt;数量&gt; &lt;单价&gt;</span>
             <span class="right">快速上架售卖手中物品</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/pur <数量> <单价>')">
+          <div class="cmd-item" data-copy="/pur &lt;数量&gt; &lt;单价&gt;">
             <span class="left">/pur &lt;数量&gt; &lt;单价&gt;</span>
             <span class="right">快速发布求购订单</span>
           </div>
@@ -160,67 +154,67 @@
         <section id="residence" class="section-card">
           <h2>二、领地系统</h2>
           <p>先用木锄分别左右键选定区域两角，再建立领地（每格 0.5 金币）。</p>
-          <div class="cmd-item" onclick="copyCmd('/res create <领地名字>')">
+          <div class="cmd-item" data-copy="/res create &lt;领地名字&gt;">
             <span class="left">/res create &lt;领地名字&gt;</span>
             <span class="right">建立领地</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res ?')">
+          <div class="cmd-item" data-copy="/res ?">
             <span class="left">/res ?</span>
             <span class="right">列出全部领地指令</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res set')">
+          <div class="cmd-item" data-copy="/res set">
             <span class="left">/res set</span>
             <span class="right">设置领地权限（需站在自己领地内）</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res remove')">
+          <div class="cmd-item" data-copy="/res remove">
             <span class="left">/res remove</span>
             <span class="right">删除领地</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res add <领地名> player <玩家名> <权限标志>')">
+          <div class="cmd-item" data-copy="/res add &lt;领地名&gt; player &lt;玩家名&gt; &lt;权限标志&gt;">
             <span class="left">/res add &lt;领地名&gt; player &lt;玩家名&gt; &lt;权限标志&gt;</span>
             <span class="right">给予玩家特定领地权限</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res remove <领地名> player <玩家名> <权限标志>')">
+          <div class="cmd-item" data-copy="/res remove &lt;领地名&gt; player &lt;玩家名&gt; &lt;权限标志&gt;">
             <span class="left">/res remove &lt;领地名&gt; player &lt;玩家名&gt; &lt;权限标志&gt;</span>
             <span class="right">移除玩家特定领地权限</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res trust <领地名> <玩家名>')">
+          <div class="cmd-item" data-copy="/res trust &lt;领地名&gt; &lt;玩家名&gt;">
             <span class="left">/res trust &lt;领地名&gt; &lt;玩家名&gt;</span>
             <span class="right">将领地所有权赋予玩家</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res untrust <领地名> <玩家名>')">
+          <div class="cmd-item" data-copy="/res untrust &lt;领地名&gt; &lt;玩家名&gt;">
             <span class="left">/res untrust &lt;领地名&gt; &lt;玩家名&gt;</span>
             <span class="right">移除领地所有权</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res list')">
+          <div class="cmd-item" data-copy="/res list">
             <span class="left">/res list</span>
             <span class="right">列出您拥有的所有领地</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res info')">
+          <div class="cmd-item" data-copy="/res info">
             <span class="left">/res info</span>
             <span class="right">查看您所在领地详细信息</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res settp <领地名>')">
+          <div class="cmd-item" data-copy="/res settp &lt;领地名&gt;">
             <span class="left">/res settp &lt;领地名&gt;</span>
             <span class="right">设置领地传送点</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res tpa <领地名>')">
+          <div class="cmd-item" data-copy="/res tpa &lt;领地名&gt;">
             <span class="left">/res tpa &lt;领地名&gt;</span>
             <span class="right">传送到领地传送点</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res listtp')">
+          <div class="cmd-item" data-copy="/res listtp">
             <span class="left">/res listtp</span>
             <span class="right">列出所有领地传送点</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res areashow <领地名>')">
+          <div class="cmd-item" data-copy="/res areashow &lt;领地名&gt;">
             <span class="left">/res areashow &lt;领地名&gt;</span>
             <span class="right">显示领地边界</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res areahide <领地名>')">
+          <div class="cmd-item" data-copy="/res areahide &lt;领地名&gt;">
             <span class="left">/res areahide &lt;领地名&gt;</span>
             <span class="right">隐藏领地边界</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/res expand <领地名> <长度>')">
+          <div class="cmd-item" data-copy="/res expand &lt;领地名&gt; &lt;长度&gt;">
             <span class="left">/res expand &lt;领地名&gt; &lt;长度&gt;</span>
             <span class="right">扩大自己的领地</span>
           </div>
@@ -228,31 +222,31 @@
 
         <section id="misc" class="section-card">
           <h2>三、杂项命令</h2>
-          <div class="cmd-item" onclick="copyCmd('/plt open')">
+          <div class="cmd-item" data-copy="/plt open">
             <span class="left">/plt open</span>
             <span class="right">打开头衔管理</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/plg open')">
+          <div class="cmd-item" data-copy="/plg open">
             <span class="left">/plg open</span>
             <span class="right">打开公会系统</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/aclist')">
+          <div class="cmd-item" data-copy="/aclist">
             <span class="left">/aclist</span>
             <span class="right">查询自己的死亡箱子</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/plw open')">
+          <div class="cmd-item" data-copy="/plw open">
             <span class="left">/plw open</span>
             <span class="right">打开地标系统</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/skill')">
+          <div class="cmd-item" data-copy="/skill">
             <span class="left">/skill</span>
             <span class="right">打开经验与技能系统</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/skillrank')">
+          <div class="cmd-item" data-copy="/skillrank">
             <span class="left">/skillrank</span>
             <span class="right">查看自己的经验排名</span>
           </div>
-          <div class="cmd-item" onclick="copyCmd('/skilltop')">
+          <div class="cmd-item" data-copy="/skilltop">
             <span class="left">/skilltop</span>
             <span class="right">查看经验排行榜</span>
           </div>
@@ -292,7 +286,7 @@
 
         <section id="enchant" class="section-card">
           <h2>五、新增附魔大全</h2>
-          <div class="cmd-item" onclick="window.location.href='enchant.html'">
+          <div class="cmd-item" data-href="enchant.html">
             <span class="left">点击进入：新增附魔大全</span>
             <span class="right">收录附魔效果、来源与试炼地点</span>
           </div>
@@ -307,10 +301,5 @@
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
   <script src="./assets/site.js"></script>
-  <script>
-    function copyCmd(text) {
-      window.gmcUi.copyText(text, '已复制：' + text);
-    }
-  </script>
 </body>
 </html>

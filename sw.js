@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gmc-cache-v2026-07-08-1';
+const CACHE_VERSION = 'gmc-cache-v2026-07-08-2';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const CORE_ASSETS = [
   './enchant.html',
   './assets/site.css',
   './assets/site.js',
+  './assets/enchant.js',
   './assets/icon.jpg',
   './enchantments.md',
   './enchantments-data.js'

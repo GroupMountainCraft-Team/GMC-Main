@@ -5,181 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GMC 周末活动公告</title>
   <meta name="description" content="GMC 周末活动公告，查看建筑大赛、PVP 竞技、时间表、连接方式、奖励和注意事项。" />
-  <meta name="theme-color" content="#0b151a" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#edf5f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#101612" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f5f7f2" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="./assets/icon.jpg" type="image/jpeg" />
   <link rel="apple-touch-icon" href="./assets/icon.jpg" />
   <link rel="stylesheet" href="./assets/site.css" />
-  <style>
-    .event-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-      align-items: start;
-    }
-
-    .activity-main {
-      display: grid;
-      gap: 14px;
-    }
-
-    .activity-main h1 {
-      margin: 0;
-      line-height: 1.2;
-    }
-
-    .activity-main .gold-box {
-      margin: 0;
-    }
-
-    .activity-main .section-card {
-      margin: 0;
-      padding: 16px 18px;
-    }
-
-    .activity-main .section-card h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      line-height: 1.25;
-    }
-
-    .activity-main .section-card p,
-    .activity-main .section-card li,
-    .activity-main .section-card div {
-      line-height: 1.72;
-    }
-
-    .event-pill {
-      border: 1px solid var(--section-line);
-      border-radius: 10px;
-      padding: 12px 14px;
-      background: var(--surface-strong);
-      color: var(--text);
-      min-width: 0;
-    }
-
-    @media (prefers-color-scheme: light) {
-      .event-pill {
-        background: rgba(240, 249, 250, 0.96);
-        border-color: rgba(72, 138, 135, 0.3);
-        color: #123f45;
-      }
-
-      .event-pill h4,
-      .event-pill div,
-      .event-pill p {
-        color: #123f45;
-      }
-    }
-
-    .event-pill h4 {
-      margin: 0 0 6px;
-    }
-
-    .event-pill p {
-      margin: 8px 0;
-      line-height: 1.6;
-    }
-
-    .event-pill.full-row {
-      grid-column: 1 / -1;
-    }
-
-    .colored-title {
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .reward-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 8px;
-    }
-
-    .reward-card {
-      border: 1px solid var(--section-line);
-      border-radius: 12px;
-      background: var(--surface-strong);
-      padding: 12px 14px;
-    }
-
-    .reward-card h3,
-    .reward-card h4 {
-      margin: 0 0 8px;
-    }
-
-    .reward-card p {
-      margin: 8px 0;
-    }
-
-    @media (max-width: 900px) {
-      .event-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .reward-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .event-pill.full-row {
-        grid-column: auto;
-      }
-    }
-
-    @media (max-width: 640px) {
-      main.content {
-        padding: 14px;
-      }
-
-      .activity-main {
-        gap: 12px;
-      }
-
-      .section-card {
-        padding: 12px;
-      }
-
-      .section-card h2 {
-        font-size: 1.2rem;
-        margin: 0 0 10px;
-      }
-
-      .event-pill {
-        padding: 10px;
-      }
-
-      .reward-card {
-        padding: 10px;
-      }
-
-      .event-pill h4 {
-        font-size: 1.05rem;
-      }
-
-      .event-pill p,
-      .event-pill div,
-      .section-card li {
-        font-size: 0.97rem;
-        line-height: 1.65;
-      }
-
-      .section-card ul,
-      .section-card ol {
-        margin: 10px 0;
-        padding-left: 18px;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="orb-layer" aria-hidden="true">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
-  </div>
-
   <div class="site-shell">
     <nav class="top-nav" aria-label="主导航">
       <a class="brand" href="index.html">GMC SERVER</a>
@@ -191,7 +23,7 @@
       </div>
     </nav>
 
-    <main class="content panel reveal activity-main" style="margin-top: 18px;">
+    <main class="content panel reveal activity-main">
       <h1>GMC 3.28 周末双赛活动</h1>
       <div class="gold-box">活动组合：创意建筑大赛 + PVP 竞技狂欢</div>
 
@@ -271,14 +103,14 @@
             <h4>第三名奖励</h4>
             <p>+100金币 +7金苹果 +1附魔金苹果</p>
             <p>+自选附魔书 +限时称号（七天）
-              <span class="colored-title">
-                <span style="color:#780000;">裁</span><span style="color:#c81428;">决</span><span style="color:#ff3214;">者</span>
+              <span class="colored-title title-judge">
+                <span>裁</span><span>决</span><span>者</span>
               </span>
             </p>
             <h4>团队PVP胜利小队</h4>
             <p>+公会资金200/人 +150金币/人 +限时称号（七天）
-              <span class="colored-title">
-                <span style="color:#b48200;">绝</span><span style="color:#e6b700;">境</span><span style="color:#ffde21;">登</span><span style="color:#fff564;">顶</span>
+              <span class="colored-title title-peak">
+                <span>绝</span><span>境</span><span>登</span><span>顶</span>
               </span>
             </p>
             <h4>在线30分钟奖励</h4>
