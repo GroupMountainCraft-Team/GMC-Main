@@ -13,29 +13,49 @@
 </head>
 <body class="docs-page">
   <div class="site-shell">
-    <nav class="top-nav" aria-label="主导航">
-      <a class="brand" href="index.html">← GMC 官网</a>
-    </nav>
+    <div class="page-layout">
+      <aside class="toc panel reveal">
+        <h3>活动目录</h3>
+        <a href="#schedule">时间表</a>
+        <a href="#connect">连接方式</a>
+        <a href="#build">建筑大赛</a>
+        <a href="#pvp">PVP 竞技</a>
+        <a href="#rewards">赛事奖项</a>
+        <a href="#notes">注意事项</a>
+      </aside>
 
-    <main class="content panel reveal activity-main">
-      <h1>GMC 3.28 周末双赛活动</h1>
-      <div class="gold-box">活动组合：创意建筑大赛 + PVP 竞技狂欢</div>
+      <main class="content panel reveal activity-main">
+        <div class="doc-breadcrumb"><a href="index.html">GMC 官网</a><span>/</span><span>活动公告</span></div>
+        <h1>GMC 3.28 周末双赛活动</h1>
+        <div class="gold-box">活动组合：创意建筑大赛 + PVP 竞技狂欢</div>
 
-      <section class="section-card">
-        <h2>活动时间表</h2>
-        <div class="event-grid">
-          <div class="event-pill">
-            <h4>建筑大赛</h4>
-            <div>开赛时间：16:00</div>
+        <details class="mobile-toc panel reveal" id="mobile-toc">
+          <summary>活动目录</summary>
+          <div class="mobile-toc-links">
+            <a href="#schedule">时间表</a>
+            <a href="#connect">连接方式</a>
+            <a href="#build">建筑大赛</a>
+            <a href="#pvp">PVP 竞技</a>
+            <a href="#rewards">赛事奖项</a>
+            <a href="#notes">注意事项</a>
           </div>
-          <div class="event-pill">
-            <h4>PVP 竞技</h4>
-            <div>开赛时间：20:00</div>
-          </div>
-        </div>
-      </section>
+        </details>
 
-      <section class="section-card">
+        <section class="section-card" id="schedule">
+          <h2>活动时间表</h2>
+          <div class="event-grid">
+            <div class="event-pill">
+              <h4>建筑大赛</h4>
+              <div>开赛时间：16:00</div>
+            </div>
+            <div class="event-pill">
+              <h4>PVP 竞技</h4>
+              <div>开赛时间：20:00</div>
+            </div>
+          </div>
+        </section>
+
+      <section class="section-card" id="connect">
         <h2>连接方式</h2>
         <ul>
           <li>活动场地：GMC 活动服</li>
@@ -44,7 +64,7 @@
         </ul>
       </section>
 
-      <section class="section-card">
+      <section class="section-card" id="build">
         <h2>创意建筑大赛详情</h2>
         <p>赛制：随机抽题、限时建造、积分累计。</p>
         <p><strong>积分规则说明：</strong></p>
@@ -70,7 +90,7 @@
         </div>
       </section>
 
-      <section class="section-card">
+      <section class="section-card" id="pvp">
         <h2>PVP 竞技详情</h2>
         <p>共 4 场：3 场大逃杀 + 1 场团队经典。</p>
         <div class="event-grid">
@@ -85,7 +105,7 @@
         </div>
       </section>
 
-      <section class="section-card">
+      <section class="section-card" id="rewards">
         <h2>赛事奖项</h2>
         <div class="reward-grid">
           <div class="reward-card">
@@ -125,7 +145,7 @@
         </div>
       </section>
 
-      <section class="section-card">
+      <section class="section-card" id="notes">
         <h2>注意事项</h2>
         <ul>
           <li>开局有短暂无敌时间，请合理规划。</li>
@@ -136,8 +156,9 @@
         </ul>
       </section>
 
-      <p class="footer">GMC 服务器管理组 | 2026-03-28</p>
-    </main>
+        <p class="footer">GMC 服务器管理组 | 2026-03-28</p>
+      </main>
+    </div>
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>

@@ -22,8 +22,8 @@
 	--shadow: 0 16px 36px rgba(33, 49, 39, 0.08);
 	--shadow-hover: 0 18px 42px rgba(33, 49, 39, 0.13);
 	--radius: 8px;
-	--nav-height: 74px;
-	--nav-offset: 12px;
+	--nav-height: 0px;
+	--nav-offset: 0px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -96,47 +96,7 @@ input {
 	overflow: clip;
 }
 
-.top-nav {
-	position: relative;
-	z-index: 40;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	min-height: 28px;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	box-shadow: none;
-}
-
-.top-nav.scrolled {
-	box-shadow: none;
-}
-
-.brand {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	width: fit-content;
-	min-width: 0;
-	padding: 0;
-	border: 0;
-	border-radius: 0;
-	background: transparent;
-	box-shadow: none;
-	color: var(--muted);
-	text-decoration: none;
-	font-size: 0.88rem;
-	font-weight: 800;
-	letter-spacing: 0;
-	transition: color 0.18s ease;
-}
-
-.brand:hover {
-	color: var(--brand-strong);
-}
-
-.brand:focus-visible,
+.doc-breadcrumb a:focus-visible,
 .btn:focus-visible,
 .cmd-item:focus-visible,
 .back-to-top:focus-visible,
@@ -581,12 +541,15 @@ input {
 }
 
 .docs-page .site-shell {
-	width: min(1240px, calc(100% - 32px));
+	width: min(1220px, calc(100% - 40px));
+	margin-top: 26px;
 }
 
 .docs-page .page-layout {
-	grid-template-columns: 260px minmax(0, 1fr);
+	grid-template-columns: 230px minmax(0, 900px);
 	align-items: start;
+	justify-content: center;
+	gap: 28px;
 }
 
 .panel,
@@ -600,38 +563,67 @@ input {
 }
 
 .docs-page .content {
-	max-width: 920px;
+	max-width: 900px;
+	padding: 34px 38px;
+	border-color: color-mix(in srgb, var(--line) 72%, transparent);
 	box-shadow: none;
 }
 
 .docs-page .toc {
+	border: 0;
 	box-shadow: none;
-	background: color-mix(in srgb, var(--soft) 82%, transparent);
+	background: transparent;
+}
+
+.docs-page .enchant-page {
+	max-width: none;
+	width: 100%;
+}
+
+.doc-breadcrumb {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 18px;
+	color: var(--muted);
+	font-size: 0.84rem;
+	font-weight: 800;
+}
+
+.doc-breadcrumb a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.doc-breadcrumb a:hover {
+	color: var(--brand-strong);
 }
 
 .toc {
 	position: sticky;
-	top: calc(var(--nav-offset) + var(--nav-height) + 10px);
+	top: 24px;
 	align-self: start;
-	max-height: calc(100vh - 110px);
-	padding: 14px;
+	max-height: calc(100vh - 48px);
+	padding: 8px 0;
 	overflow: auto;
 }
 
 .toc h3 {
-	margin: 0 0 10px;
-	font-size: 0.95rem;
+	margin: 0 0 12px;
+	color: var(--ink);
+	font-size: 0.88rem;
+	letter-spacing: 0;
 }
 
 .toc a,
 .mobile-toc-links a {
 	display: block;
-	padding: 7px 8px;
-	border-left: 3px solid transparent;
-	border-radius: 5px;
+	padding: 6px 9px;
+	border-left: 2px solid transparent;
+	border-radius: 0 5px 5px 0;
 	color: var(--muted);
 	text-decoration: none;
-	font-size: 0.92rem;
+	font-size: 0.9rem;
 	font-weight: 700;
 }
 
@@ -646,11 +638,18 @@ input {
 
 .mobile-toc {
 	display: none;
-	margin-top: 14px;
-	padding: 12px;
+	margin-top: 0;
+	margin-bottom: 12px;
+	padding: 10px 12px;
 	position: sticky;
-	top: calc(var(--nav-offset) + var(--nav-height) + 8px);
+	top: 8px;
 	z-index: 30;
+}
+
+.docs-page .mobile-toc {
+	box-shadow: none;
+	background: color-mix(in srgb, var(--soft) 92%, transparent);
+	backdrop-filter: blur(14px);
 }
 
 .mobile-toc summary {
@@ -688,8 +687,7 @@ input {
 	overflow-wrap: anywhere;
 }
 
-.content > h1,
-.content section:first-child > h1 {
+.content h1 {
 	margin-top: 0;
 	font-size: clamp(1.8rem, 3vw, 2.6rem);
 	line-height: 1.14;
@@ -859,18 +857,13 @@ input {
 }
 
 .activity-main {
-	display: grid;
-	gap: 14px;
-	margin-top: 18px;
+	display: block;
+	margin-top: 0;
 }
 
 .activity-main h1 {
 	margin: 0;
 	line-height: 1.14;
-}
-
-.activity-main .section-card {
-	margin: 0;
 }
 
 .colored-title {
@@ -1189,13 +1182,9 @@ input {
 		overflow: visible;
 	}
 
-	.top-nav {
-		min-height: 24px;
-	}
-
-	.brand {
-		font-size: 0.8rem;
-		line-height: 1;
+	.docs-page .site-shell {
+		margin: 10px 12px 34px;
+		width: auto;
 	}
 
 	.home-hero,
@@ -1362,7 +1351,8 @@ input {
 	}
 
 	.docs-page .content {
-		padding: 18px;
+		padding: 20px 18px;
+		border-radius: var(--radius);
 	}
 
 	.docs-page .section-card {
