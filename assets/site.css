@@ -10,6 +10,10 @@
 	--line-strong: #acc5b2;
 	--brand: #236b4d;
 	--brand-strong: #124f37;
+	--action-bg: #236b4d;
+	--action-bg-hover: #1f5f45;
+	--action-border: #1c573f;
+	--action-fg: #ffffff;
 	--mint: #d8efe2;
 	--mint-2: #edf8f1;
 	--gold: #b68021;
@@ -39,6 +43,10 @@
 		--line-strong: #4f775d;
 		--brand: #7fd0a1;
 		--brand-strong: #9be3b8;
+		--action-bg: #2f6f55;
+		--action-bg-hover: #36795d;
+		--action-border: #4f8f6e;
+		--action-fg: #f7fff9;
 		--mint: rgba(112, 196, 144, 0.16);
 		--mint-2: rgba(112, 196, 144, 0.09);
 		--gold: #f0bc62;
@@ -622,9 +630,14 @@ input {
 }
 
 .btn-primary {
-	border-color: var(--brand-strong);
-	background: var(--brand-strong);
-	color: #fff;
+	border-color: var(--action-border);
+	background: var(--action-bg);
+	color: var(--action-fg);
+}
+
+.btn-primary:hover {
+	border-color: var(--action-border);
+	background: var(--action-bg-hover);
 }
 
 .mono,
