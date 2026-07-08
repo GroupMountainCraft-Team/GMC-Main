@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GMC 服务器主页</title>
+  <meta name="description" content="GMC 服务器导航页，提供服务器 Wiki、管理规定、活动公告与 IP 快速复制入口。" />
+  <meta name="theme-color" content="#0b151a" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#edf5f7" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="./assets/icon.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="./assets/icon.jpg" />
   <link rel="stylesheet" href="./assets/site.css" />
 </head>
 <body>
@@ -14,10 +19,10 @@
   </div>
 
   <div class="site-shell">
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="主导航">
       <a class="brand" href="index.html">GMC SERVER</a>
       <div class="nav-links">
-        <a class="active" href="index.html">首页</a>
+        <a class="active" href="index.html" aria-current="page">首页</a>
         <a href="wiki.html">Wiki</a>
         <a href="rules.html">管理规定</a>
         <a href="actives.html">活动公告</a>
@@ -31,7 +36,7 @@
         这里有完整的服务器 Wiki、管理条例和活动公告。你可以快速找到规则边界、指令系统和每周活动安排，直接开玩，不踩坑。
       </p>
       <div class="btn-row">
-        <button class="btn btn-primary mono" onclick="copyIP()">IP: 91gmc.xyz（点击复制）</button>
+        <button class="btn btn-primary mono" type="button" onclick="copyIP()">IP: 91gmc.xyz（点击复制）</button>
       </div>
     </header>
 

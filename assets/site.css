@@ -140,6 +140,10 @@ body {
 	padding: 0;
 }
 
+html {
+	scroll-padding-top: calc(var(--nav-height) + var(--nav-offset) + 24px);
+}
+
 body {
 	font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif;
 	color: var(--text);
@@ -351,6 +355,18 @@ body {
 	transform: translateY(-2px);
 }
 
+.btn:focus {
+	outline: none;
+}
+
+.btn:focus-visible,
+.cmd-item:focus-visible,
+.back-to-top:focus-visible,
+.toolbar input:focus-visible {
+	outline: 2px solid rgba(114, 242, 206, 0.75);
+	outline-offset: 2px;
+}
+
 .btn::before {
 	content: '';
 	position: absolute;
@@ -389,6 +405,7 @@ body {
 	color: inherit;
 	transition: 0.22s ease;
 	box-shadow: 0 8px 20px var(--shadow-soft);
+	min-width: 0;
 }
 
 .card:hover {
@@ -400,6 +417,7 @@ body {
 .card p {
 	color: var(--text-dim);
 	line-height: 1.6;
+	overflow-wrap: anywhere;
 }
 
 .hot-card {
@@ -581,6 +599,7 @@ body {
 
 .content {
 	padding: 24px;
+	min-width: 0;
 }
 
 .content h1 {
@@ -626,6 +645,7 @@ body {
 	margin: 8px 0;
 	background: var(--cmd-bg);
 	cursor: pointer;
+	color: inherit;
 }
 
 .cmd-item:hover {
@@ -637,11 +657,13 @@ body {
 	color: var(--cmd-left-text);
 	font-family: 'SFMono-Regular', 'Cascadia Mono', 'Consolas', 'Liberation Mono', monospace;
 	font-size: 0.91rem;
+	overflow-wrap: anywhere;
 }
 
 .cmd-item .right {
 	color: var(--text-dim);
 	font-size: 0.88rem;
+	text-align: right;
 }
 
 .reveal {
@@ -670,6 +692,8 @@ body {
 	padding: 10px 16px;
 	font-size: 0.9rem;
 	z-index: 50;
+	max-width: min(92vw, 560px);
+	text-align: center;
 }
 
 .toast.show {
@@ -823,6 +847,10 @@ body {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 6px;
+	}
+
+	.cmd-item .right {
+		text-align: left;
 	}
 
 	.stats-grid {

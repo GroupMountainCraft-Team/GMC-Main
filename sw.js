@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gmc-cache-v2026-03-28-1';
+const CACHE_VERSION = 'gmc-cache-v2026-07-08-1';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -8,20 +8,26 @@ const CORE_ASSETS = [
   './enchant.html',
   './assets/site.css',
   './assets/site.js',
+  './assets/icon.jpg',
+  './enchantments.md',
   './enchantments-data.js'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting())
+    caches
+      .open(CACHE_VERSION)
+      .then((cache) => Promise.allSettled(CORE_ASSETS.map((asset) => cache.add(asset))))
+      .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((key) => key !== CACHE_VERSION).map((key) => caches.delete(key)))
-    ).then(() => self.clients.claim())
+    caches
+      .keys()
+      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_VERSION).map((key) => caches.delete(key))))
+      .then(() => self.clients.claim())
   );
 });
 
@@ -50,12 +56,14 @@ async function networkFirst(request) {
   const cache = await caches.open(CACHE_VERSION);
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (canCache(response)) {
+      cache.put(request, response.clone());
+    }
     return response;
   } catch (_) {
-    const cached = await cache.match(request);
+    const cached = await cache.match(request, { ignoreSearch: true });
     if (cached) return cached;
-    const fallback = await cache.match('./index.html');
+    const fallback = await cache.match('./index.html', { ignoreSearch: true });
     return fallback || new Response('Offline', { status: 503, statusText: 'Offline' });
   }
 }
@@ -66,15 +74,23 @@ async function cacheFirst(request) {
   if (cached) {
     fetch(request)
       .then((response) => {
-        cache.put(request, response.clone());
+        if (canCache(response)) {
+          cache.put(request, response.clone());
+        }
       })
       .catch(() => {});
     return cached;
   }
 
-  const response = await fetch(request);
-  cache.put(request, response.clone());
-  return response;
+  try {
+    const response = await fetch(request);
+    if (canCache(response)) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch (_) {
+    return new Response('Offline', { status: 503, statusText: 'Offline' });
+  }
 }
 
 async function staleWhileRevalidate(request) {
@@ -83,10 +99,19 @@ async function staleWhileRevalidate(request) {
 
   const networkPromise = fetch(request)
     .then((response) => {
-      cache.put(request, response.clone());
+      if (canCache(response)) {
+        cache.put(request, response.clone());
+      }
       return response;
     })
     .catch(() => null);
 
-  return cached || networkPromise || new Response('Offline', { status: 503, statusText: 'Offline' });
+  if (cached) return cached;
+
+  const response = await networkPromise;
+  return response || new Response('Offline', { status: 503, statusText: 'Offline' });
+}
+
+function canCache(response) {
+  return response && response.ok && (response.type === 'basic' || response.type === 'default');
 }

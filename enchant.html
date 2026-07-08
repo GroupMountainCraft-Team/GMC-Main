@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GMC 新增附魔大全</title>
+  <meta name="description" content="GMC 新增附魔大全，支持搜索附魔名称、中文名、适用装备、获取方式和试炼地点。" />
+  <meta name="theme-color" content="#0b151a" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#edf5f7" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="./assets/icon.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="./assets/icon.jpg" />
   <link rel="stylesheet" href="./assets/site.css" />
   <style>
     .toolbar {
@@ -22,6 +27,12 @@
       border-radius: 10px;
       padding: 10px 12px;
       outline: none;
+    }
+
+    .toolbar .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .table-wrap {
@@ -149,6 +160,12 @@
       font-size: 0.86rem;
     }
 
+    .empty-row td {
+      color: var(--text-dim);
+      text-align: center;
+      padding: 22px 12px;
+    }
+
     @media (max-width: 980px) {
       th:nth-child(1),
       th:nth-child(2),
@@ -161,6 +178,13 @@
         min-width: 1300px;
       }
     }
+
+    @media (max-width: 640px) {
+      .toolbar input,
+      .toolbar .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -171,11 +195,11 @@
   </div>
 
   <div class="site-shell">
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="主导航">
       <a class="brand" href="index.html">GMC SERVER</a>
       <div class="nav-links">
         <a href="index.html">首页</a>
-        <a class="active" href="wiki.html">Wiki</a>
+        <a class="active" href="wiki.html" aria-current="page">Wiki</a>
         <a href="rules.html">管理规定</a>
         <a href="actives.html">活动公告</a>
       </div>
@@ -187,7 +211,7 @@
       <p class="muted" id="statusText">正在加载附魔数据...</p>
 
       <div class="toolbar">
-        <input id="searchInput" type="text" placeholder="搜索附魔名、中文名、装备、试炼地点..." />
+        <input id="searchInput" type="search" autocomplete="off" placeholder="搜索附魔名、中文名、装备、试炼地点..." aria-label="搜索附魔" />
         <a class="btn" href="wiki.html#enchant">返回 Wiki</a>
       </div>
 
@@ -239,6 +263,7 @@
       });
       thead.appendChild(headTr);
 
+      const fragment = document.createDocumentFragment();
       rows.forEach((row) => {
         const tr = document.createElement('tr');
         row.forEach((cell) => {
@@ -246,13 +271,39 @@
           td.textContent = cell;
           tr.appendChild(td);
         });
-        tbody.appendChild(tr);
+        fragment.appendChild(tr);
       });
+      tbody.appendChild(fragment);
 
       const statusText = document.getElementById('statusText');
       if (statusText) {
         statusText.textContent = `已加载 ${rows.length} 条附魔数据`;
       }
+    }
+
+    function renderEmptyState(headers, keyword) {
+      renderTable(headers, []);
+      const tbody = document.querySelector('#enchantTable tbody');
+      const tr = document.createElement('tr');
+      tr.className = 'empty-row';
+      const td = document.createElement('td');
+      td.colSpan = Math.max(headers.length, 1);
+      td.textContent = `没有找到与“${keyword}”相关的附魔`;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+
+      const statusText = document.getElementById('statusText');
+      if (statusText) {
+        statusText.textContent = '未找到匹配的附魔数据';
+      }
+    }
+
+    function debounce(fn, delay = 120) {
+      let timer = 0;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+      };
     }
 
     async function loadEnchantmentSource() {
@@ -278,13 +329,19 @@
       renderTable(headers, rows);
 
       const input = document.getElementById('searchInput');
-      input.addEventListener('input', () => {
+      const updateFilter = debounce(() => {
         const keyword = input.value.trim().toLowerCase();
         const filtered = !keyword
           ? rows
           : rows.filter((row) => row.join(' ').toLowerCase().includes(keyword));
+        if (keyword && !filtered.length) {
+          renderEmptyState(headers, input.value.trim());
+          return;
+        }
         renderTable(headers, filtered);
       });
+
+      input.addEventListener('input', updateFilter);
     }
 
     init().catch(() => {
