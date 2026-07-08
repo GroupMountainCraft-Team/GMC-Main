@@ -443,10 +443,10 @@ input {
 	font-size: 0.96rem;
 }
 
-.support-section {
+.support-cta {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 220px;
-	gap: 22px;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 18px;
 	align-items: center;
 	padding: 22px;
 	border: 1px solid var(--line);
@@ -455,69 +455,111 @@ input {
 	box-shadow: var(--shadow);
 }
 
-.support-section h2 {
+.support-cta h2 {
 	margin: 0;
 	font-size: clamp(1.5rem, 3vw, 2.1rem);
 	line-height: 1.12;
 }
 
-.support-section p {
+.support-cta p {
 	max-width: 760px;
 	margin: 8px 0 0;
 	color: var(--muted);
 }
 
-.support-notes {
+.support-hero {
 	display: grid;
-	gap: 6px;
-	margin: 14px 0 0;
-	padding: 0;
-	list-style: none;
-	color: var(--muted);
+	grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+	gap: 34px;
+	align-items: center;
+	margin-top: 26px;
+	padding: 34px;
+	overflow: hidden;
 }
 
-.support-notes li {
-	position: relative;
-	padding-left: 18px;
+.support-hero-copy {
+	display: grid;
+	align-content: center;
+	gap: 14px;
+	min-width: 0;
 }
 
-.support-notes li::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: 0.78em;
-	width: 6px;
-	height: 6px;
-	border-radius: 50%;
-	background: var(--gold);
-	transform: translateY(-50%);
-}
-
-.support-qr {
+.support-lede {
+	max-width: 680px;
 	margin: 0;
-	justify-self: end;
-	width: min(100%, 210px);
-	padding: 10px;
-	border: 1px solid var(--line);
-	border-radius: var(--radius);
-	background: var(--soft-2);
+	color: var(--muted);
+	font-size: 1.03rem;
+}
+
+.support-pay-card {
+	margin: 0;
+	justify-self: center;
+	width: min(100%, 390px);
 	text-align: center;
 }
 
-.support-qr img {
+.support-pay-card img {
 	display: block;
 	width: 100%;
-	aspect-ratio: 1;
+	height: auto;
+	max-height: 74vh;
 	object-fit: contain;
 	border-radius: 6px;
-	background: #fff;
+	box-shadow: 0 18px 36px rgba(33, 49, 39, 0.1);
 }
 
-.support-qr figcaption {
-	margin-top: 8px;
+.support-pay-card figcaption {
+	margin-top: 10px;
 	color: var(--muted);
-	font-size: 0.82rem;
+	font-size: 0.86rem;
 	font-weight: 800;
+}
+
+.support-rules {
+	margin-top: 18px;
+	padding: 26px;
+}
+
+.support-rules h2 {
+	margin: 0 0 14px;
+	font-size: clamp(1.42rem, 3vw, 2rem);
+	line-height: 1.16;
+}
+
+.support-warning-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.support-warning {
+	display: grid;
+	gap: 6px;
+	min-width: 0;
+	padding: 14px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--soft-2);
+}
+
+.support-warning.danger {
+	border-color: color-mix(in srgb, var(--danger) 46%, var(--line));
+	background: var(--danger-soft);
+}
+
+.support-warning strong {
+	color: var(--ink);
+	font-size: 1rem;
+}
+
+.support-warning span,
+.support-note {
+	color: var(--muted);
+	font-size: 0.93rem;
+}
+
+.support-note {
+	margin: 14px 0 0;
 }
 
 .docs-cta {
@@ -1291,6 +1333,14 @@ input {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
+	.support-hero {
+		grid-template-columns: 1fr;
+	}
+
+	.support-pay-card {
+		width: min(420px, 86vw);
+	}
+
 	#enchantTable th:nth-child(1),
 	#enchantTable th:nth-child(2),
 	#enchantTable td:nth-child(1),
@@ -1309,6 +1359,12 @@ input {
 	.docs-page .site-shell {
 		margin: 10px 12px 34px;
 		width: auto;
+	}
+
+	.support-page .site-shell {
+		width: auto;
+		margin: 10px 12px 34px;
+		overflow: visible;
 	}
 
 	.home-hero,
@@ -1443,6 +1499,8 @@ input {
 	.quick-strip,
 	.feature-grid,
 	.gallery-grid,
+	.support-cta,
+	.support-warning-grid,
 	.docs-cta {
 		grid-template-columns: 1fr;
 	}
@@ -1480,28 +1538,39 @@ input {
 		padding: 5px;
 	}
 
-	.docs-cta {
+	.docs-cta,
+	.support-cta {
 		padding: 16px;
 	}
 
-	.support-section {
-		grid-template-columns: 1fr;
-		gap: 16px;
-		padding: 16px;
-	}
-
-	.support-section h2 {
+	.support-cta h2,
+	.support-rules h2 {
 		font-size: 1.34rem;
 	}
 
-	.support-notes {
-		gap: 5px;
-		font-size: 0.9rem;
+	.support-hero {
+		gap: 18px;
+		margin-top: 12px;
+		padding: 18px;
+		overflow: hidden;
 	}
 
-	.support-qr {
-		justify-self: center;
-		width: min(78vw, 220px);
+	.support-pay-card {
+		width: 100%;
+		max-width: 310px;
+	}
+
+	.support-pay-card img {
+		max-height: none;
+	}
+
+	.support-rules {
+		margin-top: 12px;
+		padding: 18px;
+	}
+
+	.support-warning {
+		padding: 12px;
 	}
 
 	.docs-page .content {
