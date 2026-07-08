@@ -3,57 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GMC 服务器主页</title>
-  <meta name="description" content="GMC 服务器导航页，提供服务器 Wiki、管理规定、活动公告与 IP 快速复制入口。" />
+  <title>GMC Server | 多玩法 Minecraft 社区服</title>
+  <meta name="description" content="GMC Server 官网，展示服务器玩法、连接方式、社区活动与文档入口。" />
   <meta name="theme-color" content="#101612" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#f5f7f2" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="./assets/icon.jpg" type="image/jpeg" />
   <link rel="apple-touch-icon" href="./assets/icon.jpg" />
   <link rel="stylesheet" href="./assets/site.css" />
 </head>
-<body>
+<body class="home-page">
   <div class="site-shell">
     <nav class="top-nav" aria-label="主导航">
-      <a class="brand" href="index.html">GMC SERVER</a>
+      <a class="brand" href="index.html">GMC</a>
       <div class="nav-links">
-        <a class="active" href="index.html" aria-current="page">首页</a>
-        <a href="wiki.html">Wiki</a>
-        <a href="rules.html">管理规定</a>
-        <a href="actives.html">活动公告</a>
+        <a class="active" href="index.html" aria-current="page">官网</a>
+        <a href="wiki.html">文档</a>
+        <a href="rules.html">规则</a>
+        <a href="actives.html">活动</a>
       </div>
     </nav>
 
-    <header class="hero-panel reveal">
+    <header class="home-hero reveal">
       <div class="hero-copy">
         <div class="hero-kicker">Group Mountain Craft</div>
-        <h1 class="hero-title">生电 · 养老 · 建筑<br />一个长期稳定的<br class="mobile-break" />多玩法社区服</h1>
+        <h1 class="hero-title">GMC Server</h1>
         <p class="hero-desc">
-          这里有完整的服务器 Wiki、管理条例和活动公告。你可以快速找到规则边界、指令系统和每周活动安排，直接开玩，不踩坑。
+          一个长期稳定的 Minecraft 多玩法社区服。这里有生电协作、养老建筑、魔改试炼、周末赛事和跨端玩家社区，进服后直接找到自己的节奏。
         </p>
         <div class="btn-row">
-          <button class="btn btn-primary mono" type="button" data-copy="91gmc.xyz" data-copy-label="服务器 IP 已复制">IP: 91gmc.xyz（点击复制）</button>
+          <button class="btn btn-primary mono" type="button" data-copy="91gmc.xyz" data-copy-label="服务器 IP 已复制">复制 IP：91gmc.xyz</button>
+          <a class="btn" href="wiki.html">查看入服文档</a>
         </div>
+        <dl class="connect-list" aria-label="服务器连接信息">
+          <div>
+            <dt>Java</dt>
+            <dd class="mono">91gmc.xyz</dd>
+          </div>
+          <div>
+            <dt>Bedrock</dt>
+            <dd class="mono">91gmc.xyz:11451</dd>
+          </div>
+          <div>
+            <dt>审核群</dt>
+            <dd class="mono">966486718</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="photo-stack" aria-label="服务器照片展示">
+        <figure class="server-shot main-shot">
+          <img src="./assets/icon.jpg" alt="GMC Server 标志，服务器实景照片位" />
+          <figcaption>
+            <strong>服务器照片位</strong>
+            <span>把实机截图放进 assets 后可直接替换</span>
+          </figcaption>
+        </figure>
+        <figure class="server-shot small-shot">
+          <span>生电工程 / 主城 / 建筑群</span>
+        </figure>
+        <figure class="server-shot small-shot accent-shot">
+          <span>活动现场 / 副本 / 玩家合影</span>
+        </figure>
       </div>
     </header>
 
-    <section class="grid">
-      <a class="card hot-card reveal" href="actives.html">
-        <span class="chip hot-chip">重点活动</span>
-        <h3>活动公告中心</h3>
-        <p>周末双赛联动：奖励、赛制、报名时间一页看全，避免错过报名时段。</p>
-      </a>
+    <section class="quick-strip reveal" aria-label="服务器亮点">
+      <div>
+        <strong>长期稳定</strong>
+        <span>成熟管理与持续维护</span>
+      </div>
+      <div>
+        <strong>多玩法</strong>
+        <span>生电、建筑、试炼、赛事</span>
+      </div>
+      <div>
+        <strong>跨端加入</strong>
+        <span>Java 与基岩版入口</span>
+      </div>
+      <div>
+        <strong>文档独立</strong>
+        <span>规则和指令集中查询</span>
+      </div>
+    </section>
 
-      <a class="card reveal" href="wiki.html">
-        <span class="chip">必读</span>
-        <h3>服务器 Wiki</h3>
-        <p>经济、领地、杂项指令、符文之地机制与新增附魔入口。</p>
-      </a>
+    <section class="home-section reveal">
+      <div class="section-heading">
+        <span class="eyebrow">Play Styles</span>
+        <h2>你可以怎样玩</h2>
+      </div>
+      <div class="feature-grid">
+        <a class="card" href="wiki.html#server-info">
+          <span class="chip">生电协作</span>
+          <h3>面向长期工程</h3>
+          <p>适合红石机器、公共设施、资源工程和玩家协作建设。</p>
+        </a>
+        <a class="card" href="wiki.html#rune">
+          <span class="chip">魔改试炼</span>
+          <h3>副本与特殊附魔</h3>
+          <p>符文之地、试炼机制和新增附魔为战斗玩家提供成长路线。</p>
+        </a>
+        <a class="card" href="actives.html">
+          <span class="chip hot-chip">周末活动</span>
+          <h3>赛事和社区局</h3>
+          <p>建筑赛、PVP、限时奖励和称号，让社区保持活跃。</p>
+        </a>
+      </div>
+    </section>
 
-      <a class="card reveal" href="rules.html">
-        <span class="chip">管理条例</span>
-        <h3>服务器管理规定</h3>
-        <p>总章、违规分级、公会与假人规则、管理员职责等完整条例。</p>
-      </a>
+    <section class="home-section gallery-section reveal">
+      <div class="section-heading">
+        <span class="eyebrow">Gallery</span>
+        <h2>服务器照片</h2>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card">
+          <div class="photo-placeholder">主城截图</div>
+          <figcaption>建议放一张能代表服务器气质的主城或地标图。</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <div class="photo-placeholder">玩家建筑</div>
+          <figcaption>展示建筑、工会基地或玩家长期项目。</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <div class="photo-placeholder">活动现场</div>
+          <figcaption>展示赛事、PVP、合影或节日活动画面。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="home-section docs-cta reveal">
+      <div>
+        <span class="eyebrow">Docs</span>
+        <h2>文档和官网分开维护</h2>
+        <p>官网负责展示服务器与吸引新玩家；Wiki、规则和附魔表放在文档区，适合手机上快速查指令、读规则和找机制说明。</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="wiki.html">进入文档</a>
+        <a class="btn" href="rules.html">查看规则</a>
+      </div>
     </section>
 
     <p class="footer">© 2026 GMC Server Team</p>
