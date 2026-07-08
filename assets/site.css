@@ -61,6 +61,7 @@ html {
 body {
 	margin: 0;
 	min-height: 100vh;
+	overflow-x: hidden;
 	color: var(--ink);
 	background:
 		linear-gradient(90deg, rgba(35, 107, 77, 0.05) 1px, transparent 1px),
@@ -86,8 +87,9 @@ input {
 }
 
 .site-shell {
-	width: min(1180px, calc(100vw - 32px));
+	width: min(1180px, calc(100% - 32px));
 	margin: 18px auto 48px;
+	overflow: clip;
 }
 
 .top-nav {
@@ -191,6 +193,7 @@ input {
 .hero-panel > .hero-copy {
 	display: grid;
 	gap: 14px;
+	min-width: 0;
 }
 
 .home-hero::before,
@@ -239,6 +242,7 @@ input {
 	line-height: 1.02;
 	letter-spacing: 0;
 	color: var(--ink);
+	overflow-wrap: anywhere;
 }
 
 .mobile-break {
@@ -251,6 +255,7 @@ input {
 	margin: 0;
 	color: var(--muted);
 	font-size: 1.04rem;
+	overflow-wrap: anywhere;
 }
 
 .btn-row,
@@ -376,6 +381,7 @@ input {
 	border-radius: var(--radius);
 	background: var(--soft);
 	box-shadow: var(--shadow);
+	min-width: 0;
 }
 
 .toc {
@@ -454,6 +460,7 @@ input {
 .content {
 	min-width: 0;
 	padding: 24px;
+	overflow-wrap: anywhere;
 }
 
 .content > h1,
@@ -479,6 +486,11 @@ input {
 	color: var(--muted);
 }
 
+.content ul,
+.content ol {
+	padding-left: 1.3em;
+}
+
 .content-section,
 .section-card {
 	margin: 14px 0;
@@ -486,6 +498,8 @@ input {
 	border: 1px solid var(--line);
 	border-radius: var(--radius);
 	background: var(--soft-2);
+	min-width: 0;
+	overflow: hidden;
 }
 
 .notice,
@@ -495,6 +509,7 @@ input {
 	padding: 12px 14px;
 	border-radius: var(--radius);
 	border: 1px solid var(--line);
+	overflow-wrap: anywhere;
 }
 
 .notice-danger,
@@ -672,6 +687,7 @@ input {
 	border: 1px solid var(--line);
 	border-radius: var(--radius);
 	background: var(--soft);
+	-webkit-overflow-scrolling: touch;
 }
 
 #enchantTable {
@@ -908,13 +924,16 @@ input {
 
 @media (max-width: 680px) {
 	.site-shell {
-		width: min(100vw - 20px, 1180px);
+		width: calc(100% - 28px);
 		margin-top: 10px;
+		overflow: visible;
 	}
 
 	.top-nav {
 		align-items: stretch;
 		flex-direction: column;
+		gap: 10px;
+		overflow: hidden;
 	}
 
 	.brand {
@@ -923,13 +942,17 @@ input {
 
 	.nav-links {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		width: 100%;
+		gap: 6px;
+		padding: 0 2px;
 	}
 
 	.nav-links a {
-		padding: 8px 4px;
-		font-size: 0.84rem;
+		padding: 8px 6px;
+		min-width: 0;
+		font-size: 0.86rem;
+		white-space: nowrap;
 	}
 
 	.home-hero,
@@ -938,10 +961,33 @@ input {
 		padding: 18px;
 	}
 
+	.content-section,
+	.section-card {
+		padding: 14px;
+	}
+
+	.notice,
+	.warn-box,
+	.gold-box {
+		padding: 10px 12px;
+	}
+
 	.hero-title,
 	.page-title {
-		font-size: clamp(1.85rem, 9vw, 2.5rem);
-		line-height: 1.12;
+		font-size: clamp(1.58rem, 7.4vw, 2.08rem);
+		line-height: 1.14;
+	}
+
+	.hero-desc,
+	.lede {
+		font-size: 0.96rem;
+		line-height: 1.68;
+	}
+
+	.home-hero::after,
+	.hero-panel::after {
+		width: min(240px, 100%);
+		justify-self: center;
 	}
 
 	.mobile-break {
@@ -970,6 +1016,24 @@ input {
 	.toolbar .btn {
 		width: 100%;
 		min-width: 0;
+	}
+
+	.table-wrap {
+		margin-left: -8px;
+		margin-right: -8px;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0;
+	}
+
+	#enchantTable {
+		min-width: 980px;
+		font-size: 0.86rem;
+	}
+
+	#enchantTable th,
+	#enchantTable td {
+		padding: 9px 10px;
 	}
 }
 
