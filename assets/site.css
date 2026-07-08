@@ -930,28 +930,50 @@ input {
 	}
 
 	.top-nav {
-		align-items: stretch;
-		flex-direction: column;
-		gap: 10px;
+		align-items: center;
+		flex-direction: row;
+		gap: 6px;
+		padding: 8px;
 		overflow: hidden;
 	}
 
 	.brand {
-		justify-content: center;
+		justify-content: flex-start;
+		flex: 0 0 auto;
+		gap: 6px;
+		font-size: 0;
+		line-height: 1;
+	}
+
+	.brand::before {
+		width: 28px;
+		height: 28px;
 	}
 
 	.nav-links {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		width: 100%;
-		gap: 6px;
-		padding: 0 2px;
+		display: flex;
+		flex: 1 1 auto;
+		min-width: 0;
+		width: auto;
+		justify-content: flex-end;
+		gap: 3px;
+		padding: 0;
+		overflow-x: auto;
+		overscroll-behavior-inline: contain;
+		scrollbar-width: none;
+	}
+
+	.nav-links::-webkit-scrollbar {
+		display: none;
 	}
 
 	.nav-links a {
-		padding: 8px 6px;
+		flex: 0 0 auto;
+		min-height: 30px;
+		padding: 5px 7px;
 		min-width: 0;
-		font-size: 0.86rem;
+		border-radius: 5px;
+		font-size: clamp(0.68rem, 2.9vw, 0.75rem);
 		white-space: nowrap;
 	}
 
