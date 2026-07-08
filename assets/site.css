@@ -263,7 +263,7 @@ input {
 	grid-template-columns: 1fr 0.64fr;
 	grid-template-rows: 1fr 1fr;
 	gap: 10px;
-	min-height: 420px;
+	min-height: 360px;
 }
 
 .server-shot,
@@ -294,7 +294,7 @@ input {
 
 .main-shot {
 	grid-row: 1 / -1;
-	min-height: 420px;
+	min-height: 360px;
 	background:
 		linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.62)),
 		var(--sky-soft);
@@ -417,7 +417,12 @@ input {
 
 .gallery-card img {
 	aspect-ratio: 16 / 10;
-	height: auto;
+	height: clamp(150px, 18vw, 220px);
+	padding: 6px;
+	background:
+		linear-gradient(135deg, var(--mint-2), transparent 56%),
+		var(--soft-2);
+	object-fit: contain;
 }
 
 .photo-placeholder {
@@ -1310,14 +1315,14 @@ input {
 
 	.photo-stack {
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 190px 96px;
+		grid-template-rows: 150px 76px;
 		gap: 8px;
 	}
 
 	.main-shot {
 		grid-column: 1 / -1;
 		grid-row: auto;
-		min-height: 190px;
+		min-height: 150px;
 	}
 
 	.main-shot figcaption {
@@ -1390,6 +1395,12 @@ input {
 
 	.photo-placeholder {
 		min-height: 132px;
+	}
+
+	.gallery-card img {
+		aspect-ratio: 16 / 9;
+		height: 138px;
+		padding: 5px;
 	}
 
 	.docs-cta {
@@ -1470,6 +1481,17 @@ input {
 	#enchantTable th,
 	#enchantTable td {
 		padding: 9px 10px;
+	}
+}
+
+@media (max-width: 420px) {
+	.photo-stack {
+		grid-template-columns: 1fr;
+		grid-template-rows: 150px repeat(2, 82px);
+	}
+
+	.main-shot {
+		grid-column: auto;
 	}
 }
 
