@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gmc-cache-v2026-07-08-6';
+const CACHE_VERSION = 'gmc-cache-v2026-07-08-7';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -10,6 +10,12 @@ const CORE_ASSETS = [
   './assets/site.js',
   './assets/enchant.js',
   './assets/icon.jpg',
+  './assets/showcase/main-city.jpg',
+  './assets/showcase/redstone-machines.jpg',
+  './assets/showcase/market-hall.jpg',
+  './assets/showcase/pixel-art.jpg',
+  './assets/showcase/community-ritual.jpg',
+  './assets/showcase/night-kite.jpg',
   './enchantments.md',
   './enchantments-data.js'
 ];

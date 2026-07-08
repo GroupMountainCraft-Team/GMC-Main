@@ -284,6 +284,14 @@ input {
 	box-shadow: 0 14px 28px rgba(33, 49, 39, 0.08);
 }
 
+.server-shot img,
+.gallery-card img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .main-shot {
 	grid-row: 1 / -1;
 	min-height: 420px;
@@ -292,22 +300,23 @@ input {
 		var(--sky-soft);
 }
 
-.main-shot img {
+.server-shot img {
 	position: absolute;
 	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	filter: saturate(0.9);
+	filter: saturate(0.95);
 }
 
-.main-shot figcaption {
+.main-shot figcaption,
+.small-shot figcaption {
 	position: relative;
 	display: grid;
 	gap: 4px;
-	padding: 16px;
 	color: #fff;
 	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.48);
+}
+
+.main-shot figcaption {
+	padding: 16px;
 }
 
 .main-shot figcaption span {
@@ -315,7 +324,6 @@ input {
 	font-size: 0.86rem;
 }
 
-.small-shot,
 .photo-placeholder {
 	display: grid;
 	place-items: center;
@@ -326,6 +334,28 @@ input {
 	background:
 		linear-gradient(135deg, var(--sky-soft), transparent 58%),
 		linear-gradient(180deg, var(--soft-2), var(--mint-2));
+}
+
+.small-shot {
+	display: grid;
+	align-items: end;
+	min-height: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.small-shot::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.58));
+}
+
+.small-shot figcaption {
+	align-self: end;
+	padding: 12px;
+	font-size: 0.9rem;
+	font-weight: 900;
 }
 
 .accent-shot {
@@ -385,15 +415,27 @@ input {
 	box-shadow: 0 8px 18px rgba(33, 49, 39, 0.05);
 }
 
+.gallery-card img {
+	aspect-ratio: 16 / 10;
+	height: auto;
+}
+
 .photo-placeholder {
 	min-height: 190px;
 	font-size: 1.08rem;
 }
 
 .gallery-card figcaption {
+	display: grid;
+	gap: 3px;
 	padding: 12px 14px 14px;
 	color: var(--muted);
 	font-size: 0.9rem;
+}
+
+.gallery-card figcaption strong {
+	color: var(--ink);
+	font-size: 0.96rem;
 }
 
 .docs-cta {
@@ -1268,7 +1310,7 @@ input {
 
 	.photo-stack {
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 190px 72px;
+		grid-template-rows: 190px 96px;
 		gap: 8px;
 	}
 
@@ -1285,6 +1327,10 @@ input {
 	.small-shot {
 		padding: 10px;
 		font-size: 0.82rem;
+	}
+
+	.small-shot {
+		padding: 0;
 	}
 
 	.hero-kicker,
