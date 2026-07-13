@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gmc-cache-v2026-07-13-1';
+const CACHE_VERSION = 'gmc-cache-v2026-07-13-2';
 const CORE_ASSETS = [
   './',
   './index.html',

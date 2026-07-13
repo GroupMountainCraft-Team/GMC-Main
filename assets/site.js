@@ -268,7 +268,7 @@
 
   window.gmcUi = { showToast, copyText };
   window.copyCmd = (text) => copyText(text, `已复制：${text}`);
-  window.copyIP = () => copyText('91gmc.xyz', '服务器 IP 已复制');
+  window.copyIP = () => copyText('91gmc.vip:25564', 'Java 版 IP 已复制');
 
   syncNavMetrics();
   window.addEventListener('load', queueNavMetricsSync);
