@@ -6,6 +6,9 @@
 	--muted: #5e6c63;
 	--soft: #ffffff;
 	--soft-2: #f9fbf7;
+	--surface-muted: color-mix(in srgb, var(--soft-2) 88%, transparent);
+	--surface-wash: linear-gradient(135deg, color-mix(in srgb, var(--mint-2) 74%, transparent), transparent 48%), var(--soft);
+	--grid-line: rgba(35, 107, 77, 0.045);
 	--line: #d9e3d8;
 	--line-strong: #acc5b2;
 	--brand: #236b4d;
@@ -39,6 +42,9 @@
 		--muted: #a9b8ad;
 		--soft: #18231c;
 		--soft-2: #1d2a22;
+		--surface-muted: rgba(255, 255, 255, 0.035);
+		--surface-wash: linear-gradient(135deg, rgba(127, 208, 161, 0.07), transparent 50%), var(--soft);
+		--grid-line: rgba(127, 208, 161, 0.04);
 		--line: #2c4132;
 		--line-strong: #4f775d;
 		--brand: #7fd0a1;
@@ -76,8 +82,8 @@ body {
 	overflow-x: hidden;
 	color: var(--ink);
 	background:
-		linear-gradient(90deg, rgba(35, 107, 77, 0.05) 1px, transparent 1px),
-		linear-gradient(0deg, rgba(35, 107, 77, 0.05) 1px, transparent 1px),
+		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+		linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
 		linear-gradient(180deg, var(--page) 0%, var(--page-2) 100%);
 	background-size: 28px 28px, 28px 28px, auto;
 	font-family: Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
@@ -198,9 +204,7 @@ input {
 	padding: 28px;
 	border: 1px solid var(--line);
 	border-radius: var(--radius);
-	background:
-		linear-gradient(135deg, color-mix(in srgb, var(--mint-2) 80%, transparent), transparent 46%),
-		var(--soft);
+	background: var(--surface-wash);
 	box-shadow: var(--shadow);
 	overflow: hidden;
 }
@@ -250,7 +254,7 @@ input {
 	padding: 12px;
 	border: 1px solid var(--line);
 	border-radius: var(--radius);
-	background: color-mix(in srgb, var(--soft-2) 88%, transparent);
+	background: var(--surface-muted);
 }
 
 .connect-list dt {
@@ -503,6 +507,10 @@ input {
 	margin: 0;
 	justify-self: center;
 	width: min(100%, 390px);
+	padding: 14px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--surface-muted);
 	text-align: center;
 }
 
@@ -513,7 +521,7 @@ input {
 	max-height: 74vh;
 	object-fit: contain;
 	border-radius: 6px;
-	box-shadow: 0 18px 36px rgba(33, 49, 39, 0.1);
+	box-shadow: 0 14px 30px rgba(33, 49, 39, 0.09);
 }
 
 .support-pay-card figcaption {
@@ -526,6 +534,7 @@ input {
 .support-rules {
 	margin-top: 18px;
 	padding: 26px;
+	background: var(--surface-wash);
 }
 
 .support-rules h2 {
@@ -1314,7 +1323,8 @@ input {
 		min-height: auto;
 	}
 
-	.page-layout {
+	.page-layout,
+	.docs-page .page-layout {
 		grid-template-columns: 1fr;
 	}
 
@@ -1328,6 +1338,7 @@ input {
 
 	.docs-page .content {
 		max-width: none;
+		width: 100%;
 	}
 
 	.home-grid,
@@ -1570,7 +1581,8 @@ input {
 
 	.support-pay-card {
 		width: 100%;
-		max-width: 310px;
+		max-width: 340px;
+		padding: 10px;
 	}
 
 	.support-pay-card img {
